@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner with ColabEsports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- 
+    EmailJS Setup Instructions:
+    1. Sign up at https://www.emailjs.com/
+    2. Create a new Email Service (Gmail, Outlook, etc.)
+    3. Create an email template with the following variables:
+   - to_email
+   - from_name
+   - reply_to (for email)
+   - message.phone
+   - message.cafe_name
+   - message.location
+   - message.city
+   - message.state
+   - message.pc_count
+   - message.cafe_type
+   - message.establishment_year
+   - message.website
+   - message.social_media
+   - message.message
+   - message.cafe_photos
+   - message.business_docs
+4. Replace the following in the JavaScript:
+   - YOUR_PUBLIC_KEY with your EmailJS public key
+   - YOUR_SERVICE_ID with your EmailJS service ID
+   - YOUR_TEMPLATE_ID with your EmailJS template ID
+-->
+<div id="referModal" class="partner-form-container">
+    <div class="form-header">
+        <h1>🎮 Register Your Gaming Café</h1>
+        <p>Join India's premier gaming café network and revolutionize your business</p>
+    </div>
+
+    <form id="partnerForm" onsubmit="handleSubmit(event)">
+        <!-- Personal Information -->
+        <div class="form-group">
+            <label class="form-label" for="fullName">Owner's Full Name *</label>
+            <input type="text" id="fullName" class="form-input" required>
+            <div class="error-message" id="fullNameError"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="email">Email Address *</label>
+            <input type="email" id="email" class="form-input" required>
+            <div class="error-message" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="phone">Phone Number *</label>
+            <input type="tel" id="phone" class="form-input" pattern="[0-9]{10}" required>
+            <div class="error-message" id="phoneError"></div>
+        </div>
+
+        <!-- Café Information -->
+        <div class="form-group">
+            <label class="form-label" for="cafeName">Café Name *</label>
+            <input type="text" id="cafeName" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="location">Complete Address *</label>
+            <textarea id="location" class="form-input" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="city">City *</label>
+            <input type="text" id="city" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="state">State *</label>
+            <input type="text" id="state" class="form-input" required>
+        </div>
+
+        <!-- Café Details -->
+        <div class="form-group">
+            <label class="form-label" for="pcCount">Number of PCs/Gaming Stations *</label>
+            <input type="number" id="pcCount" class="form-input" min="1" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Café Type *</label>
+            <div class="investment-options">
+                <div class="investment-option" data-type="premium">
+                    <h4>Premium Gaming Café</h4>
+                    <p>High-end gaming setup</p>
+                </div>
+                <div class="investment-option" data-type="standard">
+                    <h4>Standard Gaming Zone</h4>
+                    <p>Regular gaming setup</p>
+                </div>
+                <div class="investment-option" data-type="budget">
+                    <h4>Budget Gaming Center</h4>
+                    <p>Basic gaming setup</p>
+                </div>
+            </div>
+            <input type="hidden" id="cafeType" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="establishmentYear">Year of Establishment *</label>
+            <input type="number" id="establishmentYear" class="form-input" min="1990" max="2025" required>
+        </div>
+
+        <!-- Online Presence -->
+        <div class="form-group">
+            <label class="form-label" for="website">Website URL</label>
+            <input type="url" id="website" class="form-input" placeholder="https://example.com">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" for="socialMedia">Social Media Handles</label>
+            <textarea id="socialMedia" class="form-input" rows="2" placeholder="Instagram: @handle&#10;Facebook: page_name"></textarea>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="form-group">
+            <label class="form-label" for="message">Why do you want to partner with ColabEsports? *</label>
+            <textarea id="message" class="form-input" rows="4" required></textarea>
+        </div>
+
+        <!-- File Uploads -->
+        <div class="form-group">
+            <label class="form-label">Upload Café Photos *</label>
+            <div class="file-upload">
+                <div class="file-upload-icon">📸</div>
+                <p>Click or drag to upload café photos</p>
+                <input type="file" id="cafePhotos" accept="image/*" multiple required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Upload Business Documents (Optional)</label>
+            <div class="file-upload">
+                <div class="file-upload-icon">📄</div>
+                <p>Click or drag to upload business documents</p>
+                <input type="file" id="businessDocs" accept=".pdf,.doc,.docx">
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Application</button>
+    </form>
+</div>
+
+
+
+
+
+
+<!-- Styles for Partner Form -->
+<style>
+    body {
+        background-color: #000000;
+        background-image: 
+            radial-gradient(circle at 10% 20%, rgba(200, 136, 17, 0.27) 0%, transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(188, 25, 25, 0.229) 0%, transparent 40%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .partner-form-container {
+        width: 100%;
+        min-height: 100vh;
+        background-color: transparent;
+        padding: 4rem 0;
+    }
+
+    .partner-form-container form {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: rgba(20, 20, 20, 0.95);
+        border-radius: 15px;
+        border: 1px solid rgba(223, 42, 0, 0.3);
+        backdrop-filter: blur(10px);
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .form-header h1 {
+        font-size: 2.5rem;
+        background: linear-gradient(90deg, #FFA700 0%, #DF2A00 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 1rem;
+    }
+
+    .form-header p {
+        color: #ccc;
+        font-size: 1.1rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 12px 15px;
+        background: #141414;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        color: var(--light);
+        font-family: 'Poppins', Arial, sans-serif;
+        transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(223, 42, 0, 0.2);
+    }
+
+    .investment-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .investment-option {
+        background: #141414;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .investment-option:hover {
+        border-color: var(--primary);
+        transform: translateY(-2px);
+    }
+
+    .investment-option.selected {
+        border-color: var(--primary);
+        background: rgba(223, 42, 0, 0.1);
+    }
+
+    .file-upload {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        border: 2px dashed rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .file-upload:hover {
+        border-color: var(--primary);
+    }
+
+    .file-upload input[type="file"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-upload-icon {
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(90deg, #FFA700 0%, #DF2A00 100%);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(223, 42, 0, 0.3);
+    }
+
+    .error-message {
+        color: var(--danger);
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        .partner-form-container form {
+            margin: 1rem;
+            padding: 1.5rem;
+        }
+
+        .form-header h1 {
+            font-size: 2rem;
+        }
+
+        .investment-options {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- Partner Form Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize EmailJS
+        emailjs.init("cotLBdgPdj0OzSPrR");
+
+        // Café Type Selection
+        const cafeOptions = document.querySelectorAll('.investment-option');
+        cafeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const parent = this.parentElement;
+                parent.querySelectorAll('.investment-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                if (this.dataset.type) {
+                    document.getElementById('cafeType').value = this.dataset.type;
+                }
+            });
+        });
+
+        // File upload handling
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        fileInputs.forEach(input => {
+            input.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                const fileNames = files.map(file => file.name).join(', ');
+                if (fileNames) {
+                    const uploadDiv = this.parentElement;
+                    const p = uploadDiv.querySelector('p');
+                    p.textContent = fileNames;
+                }
+            });
+        });
+    });
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        
+        if (!validateForm()) {
+            return;
+        }
+
+        const submitBtn = event.target.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending Application...';
+        submitBtn.disabled = true;
+
+        const templateParams = {
+            to_email: "business@colabplatforms.com",
+            from_name: document.getElementById('fullName').value,
+            reply_to: document.getElementById('email').value,
+            message: {
+                phone: document.getElementById('phone').value,
+                cafe_name: document.getElementById('cafeName').value,
+                location: document.getElementById('location').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                pc_count: document.getElementById('pcCount').value,
+                cafe_type: document.getElementById('cafeType').value,
+                establishment_year: document.getElementById('establishmentYear').value,
+                website: document.getElementById('website').value || 'Not provided',
+                social_media: document.getElementById('socialMedia').value || 'Not provided',
+                message: document.getElementById('message').value,
+                cafe_photos: Array.from(document.getElementById('cafePhotos').files).map(f => f.name).join(', '),
+                business_docs: document.getElementById('businessDocs').files[0]?.name || 'Not provided'
+            }
+        };
+
+        emailjs.send(
+            'service_7sos7h8',
+            'template_pu73qjh',
+            templateParams
+        ).then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            showSuccessMessage();
+        }, function(error) {
+            console.error('FAILED...', error);
+            showErrorMessage(error);
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+        });
+    }
+
+    function validateForm() {
+        let isValid = true;
+        
+        document.querySelectorAll('.error-message').forEach(err => {
+            err.style.display = 'none';
+        });
+
+        const email = document.getElementById('email');
+        if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+            document.getElementById('emailError').textContent = 'Please enter a valid email address';
+            document.getElementById('emailError').style.display = 'block';
+            isValid = false;
+        }
+
+        const phone = document.getElementById('phone');
+        if (!phone.value.match(/^[0-9]{10}$/)) {
+            document.getElementById('phoneError').textContent = 'Please enter a valid 10-digit phone number';
+            document.getElementById('phoneError').style.display = 'block';
+            isValid = false;
+        }
+
+        if (!document.getElementById('cafeType').value) {
+            isValid = false;
+            alert('Please select a café type');
+        }
+
+        const year = document.getElementById('establishmentYear').value;
+        if (year < 1990 || year > new Date().getFullYear()) {
+            isValid = false;
+            alert('Please enter a valid establishment year');
+        }
+
+        return isValid;
+    }
+
+    function showSuccessMessage() {
+        const form = document.getElementById('partnerForm');
+        form.innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+                <h2 style="color: var(--success);">Application Submitted Successfully! 🎮</h2>
+                <p>Thank you for your interest in partnering with ColabEsports. Our team will review your application and contact you shortly.</p>
+                <button onclick="window.location.href='index.html'" class="submit-btn" style="margin-top: 1rem;">
+                    Return to Home
+                </button>
+            </div>
+        `;
+    }
+
+    function showErrorMessage(error) {
+        console.error('Form submission error:', error);
+        alert('There was an error submitting your application. Please try again later.');
+    }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,342 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.game {
+  &__bg {
+    &--color,
+    &--image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    &--color {
+      background: linear-gradient(0deg, #0d111a 0%, #12151f 100%);
+      z-index: -5;
+    }
+    &--image {
+      z-index: -2;
+    }
+  }
+  &-card {
+    $self: &;
+    background: var(--bg-color);
+    border: 2px solid rgba(50, 52, 65, 0.6);
+    border-radius: 40px;
+    overflow: hidden;
+    &__content {
+      padding: 18px 18px 30px;
+      @include mixins.sm {
+        padding: 15px;
+      }
+    }
+    &__title {
+      font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+      line-height: 1.2;
+      letter-spacing: 0.6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-transform: uppercase;
+      margin: 0 0 5px 0;
+      &--link {
+        &:hover {
+          color: var(--vs-theme-color);
+        }
+      }
+    }
+    &__time {
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: var(--vs-theme-color);
+      font-family: var(--title-font);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    &__image {
+      border-radius: 23px;
+      overflow: hidden;
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(vars.$vs-theme-color, 0.3),
+          transparent
+        );
+        top: -100%;
+        left: -100%;
+        transition: all 0.5s ease;
+        z-index: 1;
+      }
+      #{$self}:hover &::before {
+        top: 100%;
+        left: 100%;
+      }
+    }
+    &__thumbnail {
+      border-radius: 23px;
+      @include mixins.smooth-transition;
+    }
+    &__details {
+      padding: 30px 10px 0;
+      @include mixins.sm {
+        padding: 30px 0 0;
+      }
+    }
+    &__progress {
+      margin: 0 0 20px 0;
+      &-label {
+        margin-bottom: 9px;
+        font-size: 13px;
+        font-family: var(--title-font);
+        text-transform: uppercase;
+        color: var(--text-color4);
+      }
+      &-bar {
+        height: 7px;
+        border: 0;
+        background-color: #292c3a;
+        border-radius: 4px;
+      }
+      &-fill {
+        background: linear-gradient(90deg, #292c3a 0%, #a6d719 100%);
+        border-radius: 4px;
+      }
+    }
+    &__info {
+      display: flex;
+      justify-content: space-between;
+    }
+    &__players,
+    &__region,
+    &__skill-level {
+      color: var(--body-color);
+      font-size: 13px;
+      text-transform: uppercase;
+      font-family: var(--title-font);
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0;
+      gap: 3px;
+      font-weight: 600;
+      span {
+        display: block;
+        font-size: 14px;
+        color: var(--white-color);
+      }
+    }
+    &__skill-level {
+      span {
+        color: var(--vs-theme-color);
+      }
+    }
+    &__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--bg-color7); // #272a35
+      padding: 18px 28px;
+    }
+    &__organizer {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      &-avatar {
+        border-radius: 50%;
+        border: 2px solid #494b53;
+      }
+      &-name {
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        font-family: var(--title-font);
+        color: var(--text-color4);
+        span {
+          color: var(--white-color);
+          text-transform: uppercase;
+          font-size: 14px;
+        }
+      }
+    }
+    &__action {
+      --icon-size: 46px;
+      min-width: var(--icon-size);
+      height: var(--icon-size);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba($color: #11141e, $alpha: 50%);
+      border-radius: 50%;
+      position: relative;
+      &::before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        border: 2px dashed var(--vs-border-color4);
+        border-radius: 50%;
+        @include mixins.smooth-transition;
+        animation-play-state: paused;
+      }
+      &:hover {
+        &::before {
+          border-color: var(--vs-theme-color);
+          animation: spin 5s infinite linear;
+          animation-play-state: running;
+        }
+      }
+    }
+    &:hover {
+      #{$self}__thumbnail {
+        transform: scale(1.05);
+        animation: shake 0.5s ease-in-out;
+      }
+    }
+    &--style2 {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      overflow: visible;
+      margin-bottom: 30px;
+      #{$self}__image {
+        max-width: max-content;
+        @include mixins.lg {
+          max-width: 180px;
+        }
+      }
+      #{$self}__thumbnail {
+        @include mixins.sm {
+          max-width: max-content;
+        }
+      }
+      #{$self}__content {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        background: #232530;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 15px 15px 0px 0px;
+        margin-bottom: 5px;
+        gap: 7px;
+        @include mixins.sm {
+          flex-wrap: wrap;
+          justify-content: center;
+          flex-direction: column;
+        }
+      }
+      #{$self}__details {
+        padding: 0 30px 0 0;
+        flex: 1;
+        @include mixins.lg {
+          padding: 0 0px 0 0;
+        }
+      }
+      #{$self}__image {
+        &::before {
+          display: none;
+        }
+      }
+      #{$self}__info {
+        padding: 0 40px 0 0;
+        @include mixins.lg {
+          padding: 0 0px 0 0;
+          flex-wrap: wrap;
+        }
+      }
+      #{$self}__footer {
+        background: #232530;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 2px 0px 15px 15px;
+        justify-content: center;
+        padding: 17px 28px;
+      }
+      #{$self}__compare {
+        svg path {
+          @include mixins.smooth-transition;
+        }
+        &:hover {
+          svg path {
+            fill: var(--vs-theme-color);
+          }
+        }
+      }
+      #{$self}__link {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.42px;
+        gap: 11px;
+        text-transform: uppercase;
+        color: var(--vs-theme-color);
+        font-family: var(--title-font);
+        svg path {
+          @include mixins.smooth-transition;
+        }
+        &:hover {
+          color: var(--white-color);
+          svg path {
+            fill: var(--white-color);
+          }
+        }
+      }
+      &:hover {
+        #{$self}__thumbnail {
+          animation: vsBreadcrumbShake 0.82s
+            cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+          transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+          perspective: 1000px;
+        }
+      }
+    }
+  }
+}
+
+/* Container for the slot */
+.slot-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  perspective: 1000px; /* Enable 3D effect */
+}
+
+/* Slot and text styling */
+.slot {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.slot-text {
+  display: inline-block;
+  animation: none; /* Starts with no animation */
+}
+
+/* Keyframes for the flipping effect */
+@keyframes slotFlip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  25% {
+    transform: rotateX(-90deg);
+  }
+  50% {
+    transform: rotateX(-180deg);
+  }
+  75% {
+    transform: rotateX(-270deg);
+  }
+  100% {
+    transform: rotateX(-360deg);
+  }
+}

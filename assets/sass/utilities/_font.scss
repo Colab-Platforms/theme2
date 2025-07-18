@@ -1,0 +1,124 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.fw-light {
+  font-weight: 300;
+}
+
+.fw-normal {
+  font-weight: 400;
+}
+
+.fw-medium {
+  font-weight: 500;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.fw-extrabold {
+  font-weight: 800;
+}
+
+.fs-md {
+  font-size: 18px;
+}
+
+.fs-xs {
+  font-size: 14px;
+}
+
+/* Responsive Typography with Clamp */
+h1 {
+  font-size: clamp(
+    2.813rem,
+    2.688rem + 0.63vw,
+    3.438rem
+  ); /* Minimum: 3.4rem, Maximum: 55px */
+}
+
+h2 {
+  font-size: clamp(
+    1.563rem,
+    1.375rem + 0.94vw,
+    2.5rem
+  ); /* Minimum: 2.5rem, Maximum: 40px */
+}
+
+h3 {
+  font-size: clamp(
+    1.25rem,
+    1.125rem + 0.63vw,
+    1.875rem
+  ); /* Minimum: 2rem, Maximum: 30px */
+}
+
+h4 {
+  font-size: clamp(
+    1.125rem,
+    1.05rem + 0.38vw,
+    1.5rem
+  ); /* Minimum: 1.5rem, Maximum: 24px */
+}
+
+h5 {
+  font-size: clamp(
+    1.125rem,
+    1.1rem + 0.13vw,
+    1.25rem
+  ); /* Minimum: 1.25rem, Maximum: 20px */
+}
+
+h6 {
+  font-size: clamp(
+    0.938rem,
+    0.925rem + 0.06vw,
+    1rem
+  ); /* Minimum: 1rem, Maximum: 18px */
+}
+
+// Optional: Add media query for extra small devices
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 25px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 321px) {
+  h1 {
+    font-size: 35px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h5 {
+    font-size: 15px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+}

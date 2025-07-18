@@ -1,0 +1,233 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.slick-track > [class*='col'] {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) / 2);
+  padding-left: calc(var(--bs-gutter-x) / 2);
+  margin-top: var(--bs-gutter-y);
+}
+
+.slick-track {
+  min-width: 100%;
+}
+
+.slick-slide img {
+  display: inline-block;
+}
+
+.slick-dots {
+  list-style-type: none;
+  padding: 2px 0;
+  margin: 38px 0 38px 0;
+  line-height: 0;
+  text-align: center;
+  height: max-content;
+
+  li {
+    display: inline-block;
+    margin-right: 25px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  button {
+    font-size: 0;
+    padding: 0;
+    background-color: transparent;
+    width: 8px;
+    height: 8px;
+    line-height: 0;
+    border-radius: 9999px;
+    border: none;
+    background-color: var(--dots-bg, #d8d8d8);
+    transition: all ease 0.4s;
+    position: relative;
+
+    &:hover {
+      border-color: vars.$vs-theme-color;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      margin: -15px 0 0 -15px;
+      border: 2px solid vars.$vs-theme-color;
+      border-radius: 50%;
+      transition: all ease 0.4s;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .slick-active {
+    button {
+      background-color: vars.$vs-theme-color;
+
+      &::before {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.slick-arrow {
+  display: inline-block;
+  padding: 0;
+  background-color: vars.$white-color;
+  position: absolute;
+  top: 50%;
+  border: 1px solid vars.$smoke-color;
+  left: var(--pos-x, -100px);
+  width: var(--icon-size, 50px);
+  height: var(--icon-size, 50px);
+  font-size: var(--icon-font-size, 18px);
+  margin-top: calc(var(--icon-size, 50px) / -2);
+  z-index: 2;
+  border-radius: 50%;
+
+  &.default {
+    position: relative;
+    --pos-x: 0;
+    margin-top: 0;
+  }
+
+  &.slick-next {
+    right: var(--pos-x, -100px);
+    left: auto;
+  }
+
+  &:hover {
+    background-color: vars.$vs-theme-color;
+    color: vars.$white-color;
+    border-color: transparent;
+  }
+}
+
+.arrow-margin {
+  .slick-arrow {
+    top: calc(50% - 30px);
+  }
+}
+
+.arrow-wrap {
+  .slick-arrow {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &:hover {
+    .slick-arrow {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.dot-style2 {
+  .slick-dots {
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+    button {
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      background-color: vars.$vs-theme-color;
+
+      &:before {
+        display: none;
+      }
+
+      &:hover {
+        background-color: vars.$title-color;
+      }
+    }
+
+    li {
+      margin: 0 5px;
+
+      &.slick-active {
+        button {
+          width: 40px;
+        }
+      }
+    }
+  }
+}
+
+@include mixins.xl {
+  .slick-arrow {
+    --arrow-horizontal: -20px;
+  }
+}
+
+@include mixins.ml {
+  .slick-arrow {
+    --arrow-horizontal: 40px;
+  }
+}
+
+@include mixins.md {
+  .slick-arrow {
+    --icon-size: 40px;
+    margin-right: 40px;
+
+    &.slick-next {
+      margin-right: 0;
+      margin-left: 40px;
+    }
+  }
+
+  .slick-dots {
+    margin: 8px 0 38px 0;
+  }
+}
+
+.vs-carousel-arrows {
+  $self: &;
+  margin-bottom: calc(var(--section-title-space) - 20px);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  @include mixins.sm {
+    margin-bottom: calc(var(--section-title-space) - 50px);
+  }
+  &.style2 {
+    border: 2px dashed rgba(166, 215, 25, 0.2);
+    background-color: var(--bg-color9);
+    border-radius: 30px;
+    padding: 13px 22px;
+    .icon-btn {
+      --btn-size: auto;
+      background-color: transparent;
+      &::before {
+        display: none;
+      }
+      svg path {
+        @include mixins.smooth-transition;
+      }
+      &:hover {
+        svg path {
+          fill: var(--vs-theme-color);
+          @include mixins.smooth-transition;
+        }
+      }
+    }
+    #{$self}__divider {
+      display: inline-block;
+      width: 5px;
+      height: 24px;
+      background-color: #12151f;
+      border: 1px solid rgba(166, 215, 25, 0.2);
+    }
+  }
+}

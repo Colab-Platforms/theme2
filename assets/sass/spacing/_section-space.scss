@@ -1,0 +1,52 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.space,
+.space-top {
+  padding-top: vars.$space;
+}
+
+.space,
+.space-bottom {
+  padding-bottom: vars.$space;
+}
+
+.space-extra,
+.space-extra-top {
+  padding-top: vars.$space-extra;
+}
+
+.space-extra,
+.space-extra-bottom {
+  padding-bottom: vars.$space-extra;
+}
+
+.space-extra,
+.space-extra-top-mobile {
+  padding-top: vars.$space-mobile-extra;
+}
+
+@include mixins.md {
+  .space,
+  .space-top {
+    padding-top: vars.$space-mobile;
+  }
+
+  .space,
+  .space-bottom {
+    padding-bottom: vars.$space-mobile;
+  }
+
+  .space-extra,
+  .space-extra-top {
+    padding-top: vars.$space-mobile-extra;
+  }
+
+  .space-extra,
+  .space-extra-bottom {
+    padding-bottom: vars.$space-mobile-extra;
+  }
+
+  .space-top-md-none {
+    padding-top: 0;
+  }
+}

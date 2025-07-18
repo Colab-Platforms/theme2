@@ -1,0 +1,6 @@
+@use "base/variables" as vars;
+@use "base/mixins" as mixins;
+
+.vs-primary {
+  color: vars.$vs-theme-color;
+}

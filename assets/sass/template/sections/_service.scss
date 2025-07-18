@@ -1,0 +1,293 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.service {
+  &__details {
+    &--ele1 {
+      position: absolute;
+      bottom: 294px;
+      left: 77px;
+      z-index: -1;
+    }
+  }
+  &--details {
+    padding-bottom: 140px;
+  }
+  &-item {
+    $self: &;
+    background: #232530;
+    border: 2px solid rgba(50, 52, 65, 0.6);
+    border-radius: 29px;
+    padding: 46px 50px 60px 60px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 30px;
+    @include mixins.lg {
+      padding: 40px 30px 45px 30px;
+    }
+    @include mixins.sm {
+      padding: 20px;
+    }
+    &__img {
+      position: absolute;
+      z-index: -1;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      @include mixins.lg {
+        max-width: 260px;
+      }
+      @include mixins.sm {
+        position: static;
+        padding: 15px 0 0 0;
+        transform: translateY(0);
+      }
+    }
+    &__icon--img {
+      margin-bottom: 25px;
+    }
+    &__heading {
+      margin: 0em 0 20px 0;
+      text-transform: capitalize;
+      &--link {
+        &:hover {
+          color: var(--vs-theme-color);
+        }
+      }
+    }
+    &__element1,
+    &__element2,
+    &__element3,
+    &__element4,
+    &__element5,
+    &__element6 {
+      position: absolute;
+      z-index: -1;
+    }
+    &__element1 {
+      bottom: -2px;
+      left: -2px;
+      border-radius: 0 0 0 29px;
+    }
+    &__element2 {
+      right: -2px;
+      top: -2px;
+      border-radius: 0 29px 0 0;
+    }
+    &__element3 {
+      top: -2px;
+      left: -2px;
+      border-radius: 29px 0 0 0;
+    }
+    &__element4 {
+      bottom: -2px;
+      right: -2px;
+      border-radius: 0 0 29px 0;
+    }
+    &__element5 {
+      top: -2px;
+      right: -2px;
+      border-radius: 29px;
+    }
+    &__element6 {
+      bottom: -2px;
+      left: -2px;
+      border-radius: 0 0 0 29px;
+    }
+    &--style2 {
+      #{$self}__heading {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        @include mixins.sm {
+          gap: 15px;
+        }
+      }
+    }
+    &--style3 {
+      padding: 50px 68px 75px 52px;
+      @include mixins.sm {
+        padding: 20px;
+      }
+      #{$self}__img--box {
+        padding-top: 38px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.vs-service {
+  &--image {
+    background: rgb(35, 37, 48, 0.7);
+    border-radius: 26px;
+  }
+  &__img {
+    border: 5px solid var(--bg-color2);
+    border-radius: 26px;
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    @include mixins.sm {
+      padding: 15px;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+  .service-item__heading {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .vs-btn {
+    clip-path: none;
+    border: 3px solid rgba(50, 52, 65, 0.7);
+    border-radius: 31.5px;
+    &::before,
+    &::after {
+      clip-path: none;
+    }
+  }
+  &__step {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 35px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+    @include mixins.md {
+      justify-content: flex-start;
+      gap: 20px;
+    }
+    @include mixins.sm {
+      flex-direction: column;
+      row-gap: 10px;
+    }
+    &--item {
+      display: flex;
+      align-items: center;
+      gap: 37px;
+      margin: 0 0 35px 0;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      @include mixins.sm {
+        flex-direction: column;
+        gap: 15px;
+        margin: 0 0 10px 0;
+      }
+      span {
+        background: var(--bg-color9);
+        border: 3px solid rgba(255, 255, 255, 0.05);
+        border-radius: 31.5px;
+        padding: 0 90px;
+        min-height: 63px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        font-size: 22px;
+        text-transform: uppercase;
+        font-family: var(--title-font);
+        font-weight: 500;
+        color: var(--white-color);
+      }
+    }
+  }
+  figure {
+    margin-bottom: 0;
+    img {
+      background: #1c2533;
+      border-radius: 34px;
+      padding: 5px;
+    }
+  }
+}
+
+.vs-game {
+  &__footer {
+    padding: 20px 37px 20px 30px;
+    @include mixins.sm {
+      padding: 15px;
+    }
+    &--right {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      flex-wrap: wrap;
+    }
+    .game-card {
+      &__content {
+        flex: 1;
+        padding: 0;
+        display: flex;
+        align-items: center;
+      }
+      &__details {
+        padding: 0;
+      }
+      &__time {
+        margin-bottom: 0;
+      }
+      &__title {
+        text-transform: capitalize;
+        font-size: clamp(1.125rem, 0.975rem + 0.75vw, 1.875rem);
+      }
+    }
+  }
+  &__winning {
+    &--bonus {
+      display: flex;
+      align-items: center;
+      background: rgba(14, 19, 28, 0.7);
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      padding: 0 35px 0 29px;
+      min-height: 70px;
+      i {
+        font-size: 26px;
+        color: var(--vs-theme-color);
+      }
+      &__info {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-left: 16px;
+        margin-left: 15px;
+        &::before {
+          position: absolute;
+          content: '';
+          width: 1px;
+          height: 39px;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          background-color: #33384a;
+        }
+      }
+      &__text {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        text-transform: capitalize;
+        display: block;
+      }
+      &__value {
+        font-size: 18px;
+        font-weight: 600;
+        display: block;
+        font-family: var(--title-font);
+        letter-spacing: 0.4px;
+        color: var(--vs-theme-color);
+      }
+    }
+  }
+  .vs-btn {
+    padding: 23px 38px;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}

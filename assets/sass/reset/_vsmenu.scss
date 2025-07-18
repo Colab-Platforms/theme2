@@ -1,0 +1,412 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.vs-menu-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(17, 19, 22, 0.2);
+  backdrop-filter: blur(5px);
+  z-index: 999999;
+  width: 0;
+  width: 100%;
+  height: 100%;
+  transition: all ease 0.8s;
+  opacity: 0;
+  visibility: hidden;
+
+  // Mobile Menu Logo
+  .mobile-logo {
+    padding: 16px 20px;
+    display: flex;
+    text-align: center;
+    background-color: var(--black-color);
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+      max-width: 185px;
+    }
+  }
+
+  // Menu Close Button
+  .vs-menu-toggle {
+    --icon-size: 33px;
+    border: none;
+    padding: 0;
+    line-height: 1;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    min-width: var(--icon-size);
+    font-size: 18px;
+    z-index: 1;
+    border-radius: 50%;
+    background-color: var(--vs-theme-color);
+    color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+
+    &:hover {
+      background-color: var(--white-color);
+      color: var(--bg-color);
+    }
+  }
+
+  .vs-menu-area {
+    width: 100%;
+    max-width: 310px;
+    background-color: var(--bg-color);
+    height: 100%;
+    position: relative;
+    left: -110%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease 1s;
+    z-index: 1;
+  }
+
+  &.vs-body-visible {
+    opacity: 1;
+    visibility: visible;
+
+    .vs-menu-area {
+      left: 0;
+      opacity: 1;
+      visibility: visible;
+      overflow-y: scroll;
+      /* width */
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px var(--vs-theme-color);
+        border-radius: 0px;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: var(--vs-theme-color);
+        border-radius: 10px;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: var(--vs-theme-color2);
+      }
+    }
+  }
+  .email-subscription {
+    &__form {
+      flex-wrap: nowrap;
+      border-width: 1px;
+      position: relative;
+    }
+    &__input {
+      padding: 5px 15px 5px 15px;
+      text-align: left;
+    }
+    &__right {
+      @include mixins.md {
+        width: auto;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      &::before {
+        display: none;
+      }
+    }
+    &__btn {
+      padding: 0 7px;
+      height: 45px;
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  .sidemenu-text {
+    font-weight: 600;
+    font-size: 14px;
+  }
+}
+
+// Mobile Menu
+.vs-mobile-menu {
+  overflow-y: scroll;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  text-align: left;
+  /* Hide scrollbar in Webkit browsers (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar in Firefox */
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+
+  .new-label {
+    margin-left: 5px;
+    text-transform: capitalize;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0 0;
+
+    li {
+      border-bottom: 1.5px solid rgba(4, 5, 7, 0.863);
+      list-style-type: none;
+
+      li:first-child {
+        border-top: 1.5px solid rgba(4, 5, 7, 0.863);
+      }
+
+      a {
+        display: block;
+        position: relative;
+        padding: 12px 0;
+        line-height: 1;
+        font-size: 15px;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-family: var(--title-font);
+        color: var(--smoke-color);
+
+        svg {
+          display: none;
+        }
+
+        &:before {
+          content: '\f105';
+          font-family: vars.$icon-font;
+          position: relative;
+          left: 0;
+          top: 0;
+          margin-right: 5px;
+          display: inline-block;
+          color: var(--vs-theme-color);
+          @include mixins.smooth-transition;
+        }
+      }
+
+      &.vs-active {
+        > a {
+          color: var(--vs-theme-color2);
+
+          &:before {
+            transform: rotate(90deg);
+            color: var(--vs-theme-color2);
+          }
+        }
+      }
+
+      ul {
+        li {
+          padding-left: 10px;
+          a {
+            font-size: 13px;
+            color: var(--body-color);
+          }
+
+          &:last-child {
+            border-bottom: none;
+            border-top: none;
+          }
+        }
+      }
+    }
+
+    .vs-item-has-children {
+      > a {
+        .vs-mean-expand {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          font-weight: 400;
+          font-size: 16px;
+          margin-top: -8px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: var(--vs-theme-color);
+
+          &:before {
+            content: '\2b';
+            font-weight: 700;
+            font-family: vars.$icon-font;
+          }
+        }
+      }
+
+      &.vs-active {
+        > a {
+          .vs-mean-expand:before {
+            content: '\f068';
+            color: var(--vs-theme-color2);
+          }
+        }
+      }
+    }
+  }
+
+  > ul {
+    padding: 0 40px;
+
+    > li {
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.vs-menu-toggle,
+.menu-toggle {
+  --icon-size: 50px;
+  width: var(--icon-size);
+  min-width: var(--icon-size);
+  height: var(--icon-size);
+  padding: 0;
+  font-size: 27px;
+  border: none;
+  display: inline-flex;
+  background-color: transparent;
+  color: var(--white-color);
+  border-radius: 0;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--vs-theme-color);
+  &:hover {
+    background-color: var(--vs-theme-color);
+    color: var(--bg-color);
+  }
+}
+.menu-toggle {
+  --icon-size: 40px;
+  font-size: 20px;
+  border-width: 1px;
+  display: none;
+  @include mixins.sm {
+    display: block;
+  }
+  &:hover {
+    background-color: transparent;
+    color: inherit;
+  }
+  &.active {
+    background-color: var(--vs-theme-color);
+    color: var(--bg-color);
+    i {
+      &::before {
+        content: '\f00d';
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .vs-menu-wrapper .vs-menu-area {
+    width: 100%;
+    max-width: 310px;
+  }
+
+  .vs-mobile-menu > ul {
+    padding: 0 20px;
+  }
+}
+
+/* Navigation Styles */
+.main-menu--footer {
+  .menu-toggle {
+    font-size: 24px;
+    color: var(--white-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: none; /* Hide toggle by default (desktop view) */
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 767px) {
+    /* Mobile menu: Toggle button will be shown */
+    .menu {
+      overflow: hidden;
+      height: 0;
+      transition: height 0.5s ease, opacity 0.5s ease;
+      opacity: 0;
+    }
+    .menu-toggle {
+      display: inline-block;
+    }
+
+    /* Mobile menu: Default is collapsed */
+    .menu {
+      height: 0;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      z-index: 1000;
+      border-top: 8px solid #121720;
+      transition: all 0.4s;
+      li {
+        margin: 3px 0;
+        a {
+          color: var(--white-color);
+          font-weight: bold;
+          padding: 5px 10px;
+          border-radius: 4px;
+          transition: all 0.3s;
+          &.vs-svg-assets {
+            svg {
+              transform: translateX(-50%) translateY(4px);
+            }
+          }
+        }
+        &:hover {
+          a {
+            color: var(--vs-theme-color);
+          }
+        }
+        &:first-child {
+          margin-top: 15px;
+        }
+        &:last-child {
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    /* Mobile menu: Show when "show" class is added */
+    .menu.show {
+      height: auto;
+      opacity: 1;
+      transition: all 0.4s;
+    }
+  }
+
+  /* Desktop menu: No toggle needed */
+  @media (min-width: 769px) {
+    .menu-toggle {
+      display: none; /* Hide toggle button */
+    }
+
+    .menu {
+      height: auto;
+      opacity: 1;
+      transition: all 0.4s;
+    }
+  }
+}

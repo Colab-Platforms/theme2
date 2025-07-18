@@ -1,0 +1,261 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.form-control,
+.form-select {
+  height: 50px;
+  padding: 15px 30px 15px 28px;
+  padding-right: 45px;
+  border: 1px solid var(--bg-color);
+  color: var(--body-color);
+  background-color: var(--bg-color4);
+  border-radius: 9999px;
+  border-radius: 0;
+  font-size: 15px;
+  width: 100%;
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+    background-color: var(--bg-color4);
+    border-color: var(--vs-theme-color);
+  }
+
+  @include mixins.inputPlaceholder {
+    color: vars.$body-color;
+  }
+
+  &.form-control-lg {
+    height: 60px;
+  }
+
+  &.form-control-sm {
+    height: 40px;
+    font-size: 12px;
+  }
+
+  &[readonly] {
+    color: vars.$title-color;
+  }
+}
+
+.form-select {
+  display: block;
+  width: 100%;
+  line-height: 1.5;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23232530' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+  background-position: right 26px center;
+  background-repeat: no-repeat;
+  background-size: 16px 12px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.form-input[type='checkbox'] {
+  visibility: hidden;
+  opacity: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  display: none;
+
+  &:checked {
+    ~ label {
+      &:before {
+        content: '\f00c';
+        color: vars.$white-color;
+        background-color: vars.$vs-theme-color;
+        border-color: vars.$vs-theme-color;
+      }
+    }
+  }
+
+  ~ label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    display: block;
+
+    &:before {
+      content: '';
+      font-family: vars.$icon-font;
+      font-weight: 700;
+      position: absolute;
+      left: 0px;
+      top: 3.5px;
+      background-color: vars.$white-color;
+      border: 1px solid vars.$border-color;
+      height: 18px;
+      width: 18px;
+      line-height: 18px;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}
+
+.form-input[type='radio'] {
+  visibility: hidden;
+  opacity: 0;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  display: none;
+
+  ~ label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    line-height: 1;
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 0;
+
+    &::before {
+      content: '\f111';
+      position: absolute;
+      font-family: vars.$icon-font;
+      left: 0;
+      top: -2px;
+      width: 20px;
+      height: 20px;
+      padding-left: 0.5px;
+      font-size: 0.6em;
+      line-height: 19px;
+      text-align: center;
+      border: 1px solid vars.$vs-theme-color;
+      border-radius: 100%;
+      font-weight: 700;
+      background: vars.$white-color;
+      color: transparent;
+      transition: all 0.2s ease;
+    }
+  }
+
+  &:checked {
+    ~ label {
+      &::before {
+        border-color: vars.$vs-theme-color;
+        background-color: vars.$vs-theme-color;
+        color: vars.$white-color;
+      }
+    }
+  }
+}
+
+.form-label {
+  margin-bottom: 0.5em;
+  margin-top: -0.3em;
+  display: block;
+  color: vars.$title-color;
+  font-family: vars.$body-font;
+  font-size: 16px;
+}
+
+.form-group {
+  margin-bottom: var(--bs-gutter-x);
+  position: relative;
+
+  > i {
+    position: absolute;
+    right: calc((var(--bs-gutter-x) / 2) + 30px);
+    top: 18px;
+    font-size: 14px;
+    color: #a0abb4;
+  }
+
+  &.has-label {
+    > i {
+      top: 45px;
+    }
+  }
+}
+
+.form-textarea.is-invalid,
+.form-select.is-invalid,
+.form-input.is-invalid,
+.was-validated input:invalid {
+  border: 1px solid vars.$error-color !important;
+  background-position: right calc(0.375em + 0.8875rem) center;
+  background-image: none;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+.form-textarea.is-invalid {
+  background-position: top calc(0.375em + 0.5875rem) right
+    calc(0.375em + 0.8875rem);
+}
+
+.row.no-gutters > .form-group {
+  margin-bottom: 0;
+}
+
+.form-messages {
+  display: none;
+
+  &.mb-0 * {
+    margin-bottom: 0;
+  }
+
+  &.success {
+    color: vars.$success-color;
+    display: block;
+  }
+
+  &.error {
+    color: vars.$error-color;
+    display: block;
+  }
+
+  pre {
+    padding: 0;
+    background-color: transparent;
+    color: inherit;
+  }
+}
+
+/* Hide the default checkbox */
+.vs-custom-checkbox input[type='checkbox'] {
+  display: none;
+}
+
+/* Style the label as a custom checkbox */
+.vs-custom-checkbox label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Create a custom box */
+.vs-custom-checkbox label::before {
+  content: '';
+  min-width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  border: 1px solid var(--vs-theme-color);
+  border-radius: 5px; /* For rounded corners */
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+  opacity: 70%;
+}
+
+/* Style for the checked state */
+.vs-custom-checkbox input[type='checkbox']:checked + label::before {
+  background-color: var(--vs-theme-color);
+  border-color: var(--vs-theme-color);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20.292 5.292l-11 11c-.39.39-1.02.39-1.41 0l-5-5c-.39-.39-.39-1.02 0-1.41.39-.39 1.02-.39 1.41 0l4.29 4.29L18.88 3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Optional hover effects */
+.vs-custom-checkbox label:hover::before {
+  border-color: var(--vs-theme-color);
+}

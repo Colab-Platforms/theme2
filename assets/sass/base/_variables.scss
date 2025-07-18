@@ -1,0 +1,99 @@
+:root {
+  --vs-theme-color: #57f6d3;
+  --vs-theme-color2: #e2ba2b;
+  --title-color: #ffffff;
+  --body-color: #d1caca;
+  --smoke-color: #eff1f5;
+  --text-black-color: #14161b;
+  --text-light-color: #646984;
+  --text-lighter-color: #9f9f9f;
+  --text-color1: #d1caca;
+  --text-color2: #bdbbba;
+  --text-color3: #696969;
+  --text-color4: #a0a0a0;
+  --text-color5: #acb6c6;
+  --text-color6: #cdd3dd;
+  --bg-color: #12151f;
+  --bg-color2: #14232f;
+  --bg-color3: #21232e;
+  --bg-color4: #1e2632;
+  --bg-color5: #1c2533;
+  --bg-color6: #272936;
+  --bg-color7: #272a35;
+  --bg-color8: #0b1924;
+  --bg-color9: #232530;
+  --bg-color10: #0f121c;
+  --bg-color11: #1f212c;
+  --bg-color12: #0e131c;
+  --black-color: #000000;
+  --white-color: #ffffff;
+  --yellow-color: #fec624;
+  --success-color: #00d147;
+  --error-color: #dc3545;
+  --vs-border-color: #a3a3a3;
+  --vs-border-color2: #292929;
+  --vs-border-color3: #1c2430;
+  --vs-border-color4: #3c3e49;
+  --vs-border-color5: #d9d9d9;
+  --vs-border-color6: #424553;
+  --vs-border-color7: #8c8a8a;
+  --vs-stroke-color: #2e3240;
+  --hover-color1: #e74c3c; /* First hover color */
+  --hover-color2: #f39c12; /* Second hover color */
+  --hover-color3: #2ecc71; /* Third hover color */
+  --title-font: 'Unbounded', sans-serif;
+  --body-font: 'Poppins', sans-serif;
+  --icon-font: 'Font Awesome 6 Pro';
+  --main-container: 1320px;
+  --custom-container: 1536px;
+  --container-gutters: 30px;
+  --section-space: 120px;
+  --section-space-mobile: 80px;
+  --section-title-space: 80px;
+  --ripple-ani-duration: 5s;
+}
+
+// Color Variation
+$vs-theme-color: #57f6d3;
+$title-color: var(--title-color);
+$body-color: var(--body-color);
+$secondary-color: var(--smoke-color);
+$smoke-color: var(--smoke-color);
+$white-color: var(--white-color);
+$black-color: var(--black-color);
+$yellow-color: var(--yellow-color);
+$success-color: var(--success-color);
+$error-color: var(--error-color);
+$border-color: var(--vs-border-color);
+
+// Font Variation
+$icon-font: var(--icon-font);
+
+// Typography
+$title-font: var(--title-font);
+$body-font: var(--body-font);
+$body-font-size: 16px;
+$body-line-Height: 26px;
+$body-font-weight: 400;
+$p-line-Height: 1.9;
+
+// Device Variation
+$hd: 1921px; // Large Device Than 1920
+$xl: 1500px; // Extra large Device
+$ml: 1399px; // Medium Large Device
+$lg: 1199px; // Large Device (Laptop)
+$md: 991px; // Medium Device (Tablet)
+$sm: 767px; // Small Device
+$xs: 575px; // Extra Small Device
+$xxs: 470px; // Extra Small Device
+
+// Spacing Count with 5x
+$space-count: 6;
+
+// Section Space  For large Device
+$space: var(--section-space);
+$space-extra: calc(var(--section-space) - 30px);
+
+// Section Space On small Device
+$space-mobile: var(--section-space-mobile);
+$space-mobile-extra: calc(var(--section-space-mobile) - 30px);

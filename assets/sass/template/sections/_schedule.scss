@@ -1,0 +1,84 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.match-schedule {
+  &__item1 {
+    display: grid;
+    gap: 11px;
+    position: relative;
+  }
+  &__row {
+    margin-bottom: 22px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__line,
+  &__line2 {
+    position: absolute;
+    right: -44px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &__left {
+    position: relative;
+  }
+}
+.vs-schedule {
+  $self: &;
+  background: #232530;
+  border: 2px solid rgba(50, 52, 65, 0.6);
+  border-radius: 20px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--white-color);
+  font-family: var(--title-font);
+  &::before {
+    position: absolute;
+    content: '';
+    width: 71px;
+    height: 100%;
+    z-index: -1;
+    background-color: #0e131c;
+    opacity: 50%;
+  }
+  &__table {
+    padding: 17px 23px 17px 0;
+    border-bottom: 1px solid #313546;
+    &:last-child {
+      border-bottom: 0;
+    }
+    &.active {
+      #{$self}__team--point {
+        color: var(--vs-theme-color);
+      }
+    }
+  }
+  &__team {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    &--logo {
+      min-width: 71px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &--name {
+      flex: 1;
+      font-family: var(--title-font);
+      letter-spacing: 0.4px;
+      @include mixins.lg {
+        display: none;
+      }
+    }
+    &--point {
+      @include mixins.xs {
+        display: none;
+      }
+    }
+  }
+}

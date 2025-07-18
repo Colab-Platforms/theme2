@@ -1,0 +1,129 @@
+@use "base/variables" as vars;
+@use "base/mixins" as mixins;
+.breadcumb-menu {
+  max-width: 100%;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  li {
+    display: inline-block;
+    list-style: none;
+    position: relative;
+
+    &:after {
+      content: "//";
+      position: relative;
+      margin: 0 11px;
+      color: var(--vs-theme-color);
+    }
+
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  li,
+  a,
+  span {
+    white-space: normal;
+    word-break: break-word;
+    font-weight: 700;
+    font-size: 15px;
+    font-family: var(--title-font);
+    color: var(--vs-theme-color);
+    letter-spacing: 0.8px;
+  }
+  li {
+    a {
+      color: var(--white-color);
+      &:hover {
+        color: var(--vs-theme-color);
+      }
+    }
+  }
+}
+
+.breadcumb-title {
+  color: vars.$white-color;
+  width: 100%;
+  text-transform: uppercase;
+  margin: -12px 0 10px 0;
+}
+
+.breadcumb-wrapper {
+  padding-top: 290px;
+  padding-bottom: 150px;
+  text-align: center;
+  text-transform: uppercase;
+  min-height: 571px;
+  position: relative;
+  z-index: 99;
+  background-color: var(--bg-color6);
+  @include mixins.lg {
+    padding-top: 220px;
+    padding-bottom: 150px;
+    min-height: 470px;
+  }
+  @include mixins.md {
+    padding-top: 160px;
+    min-height: 320px;
+    padding-bottom: 70px;
+  }
+}
+
+@include mixins.md {
+  .breadcumb-content {
+    display: block;
+  }
+
+  .breadcumb-title {
+    max-width: 100%;
+    font-size: 30px;
+    margin: 0px 0 0px 0;
+  }
+
+  .breadcumb-menu {
+    margin-top: 15px;
+  }
+}
+
+.breadcumb-shape {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  &__one,
+  &__two,
+  &__three {
+    background-color: var(--vs-theme-color);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
+  &__two,
+  &__three {
+    height: 5px;
+    width: 349px;
+    bottom: 7px;
+    clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+    left: 210px;
+    @include mixins.md {
+      display: none;
+    }
+  }
+  &__three {
+    left: auto;
+    right: 210px;
+    width: 155px;
+  }
+  &__one {
+    height: 7px;
+  }
+}

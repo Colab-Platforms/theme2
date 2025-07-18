@@ -1,0 +1,115 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.vs-nft-gallery {
+  $self: &;
+  margin-top: 13px;
+  &__img {
+    transform: skewX(-10deg) translateX(40px);
+    margin: 0 0 30px 0;
+    position: relative;
+    z-index: 1;
+    &--main {
+      padding: 10px;
+      background-color: rgba(35, 37, 48, 0.8);
+      width: 100%;
+      transform: scale(1);
+      @include mixins.smooth-transition;
+    }
+    @include mixins.md {
+      transform: skewX(-10deg) translateX(0px);
+    }
+    &--shape1,
+    &--shape2 {
+      position: absolute;
+      z-index: 1;
+      transform: skewX(10deg);
+      @include mixins.smooth-transition;
+      opacity: 0;
+      visibility: hidden;
+    }
+    &--shape1 {
+      top: -6px;
+      left: -12px;
+    }
+    &--shape2 {
+      bottom: -6px;
+      right: -12px;
+    }
+  }
+  &__title {
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s ease-in-out;
+    @include mixins.md {
+      opacity: 1;
+      visibility: visible;
+    }
+    a {
+      &:hover {
+        color: var(--vs-theme-color);
+      }
+    }
+  }
+}
+.vsn-gallery--slider {
+  @include mixins.md {
+    padding: 0 15px;
+  }
+  .slick-dots {
+    position: relative;
+    margin: 0 auto;
+    transform: translateY(-17px) translateX(35%);
+    max-width: 500px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    @include mixins.xl {
+      transform: none;
+      max-width: 100%;
+      margin-top: 15px;
+    }
+    &::before {
+      position: absolute;
+      content: '';
+      width: 510px;
+      height: 4px;
+      background-color: #232530;
+      top: 5px;
+    }
+    button {
+      width: 76px;
+      height: 8px;
+      border-radius: 0;
+      background-color: transparent;
+      &::before {
+        display: none;
+      }
+    }
+    li {
+      margin: 0;
+      &.slick-active {
+        button {
+          background-color: var(--vs-theme-color);
+        }
+      }
+    }
+  }
+  .slick-slide.slick-current.slick-active.slick-center {
+    .vs-nft-gallery {
+      &__title,
+      &__img--shape1,
+      &__img--shape2 {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.3s ease-in-out, visibility 0s ease-in-out;
+      }
+    }
+  }
+}
+.gallery--layout2 {
+  padding-top: 140px;
+  padding-bottom: 100px;
+}

@@ -1,0 +1,188 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.creator-item {
+  $self: &;
+  --icon-rotate: 43.92deg;
+  --icon-rotate-minus: -43.92deg;
+  text-align: center;
+  padding: 20px 70px 30px 70px;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 30px 0;
+  @include mixins.xl {
+    padding: 20px 35px 30px 35px;
+  }
+  &__shape {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    @include mixins.smooth-transition;
+    @include mixins.sm {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 251px;
+    }
+    & > svg {
+      @include mixins.xl {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &--second {
+      opacity: 0;
+      visibility: hidden;
+      transform: scaleY(0);
+      transform-origin: top;
+      & > svg {
+        @include mixins.xl {
+          width: 100%;
+        }
+      }
+    }
+  }
+  &__icon {
+    --icon-size: 131.82px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    background-color: #13212d;
+    border-radius: 21px;
+    transform: rotate(var(--icon-rotate));
+    box-shadow: 4px 4px 4px var(--vs-theme-color);
+    position: relative;
+    margin: 0 0 50px 0;
+    &::before {
+      --icon-size-two: 102.53px;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: var(--icon-size-two);
+      height: var(--icon-size-two);
+      background-color: #12151f;
+      border-radius: 21px;
+    }
+    &--img {
+      transform: rotate(var(--icon-rotate-minus));
+    }
+  }
+  &__title {
+    font-size: 20px;
+    &--link {
+      &:hover {
+        color: var(--vs-theme-color);
+      }
+    }
+  }
+  &__text {
+    @include mixins.xl {
+      margin-bottom: 0;
+    }
+    @include mixins.sm {
+      max-width: 65%;
+      margin: 0 auto;
+    }
+    @include mixins.xxs {
+      max-width: 100%;
+      margin: 0 auto 20px auto;
+    }
+  }
+  &:hover {
+    .creator-item__shape {
+      &--second {
+        opacity: 1;
+        visibility: visible;
+        transform: scaleY(1);
+      }
+    }
+  }
+  &--style2 {
+    --icon-rotate: 0deg;
+    --icon-rotate-minus: -0deg;
+    padding: 0px 70px 30px 70px;
+    position: relative;
+    @include mixins.lg {
+      padding: 0px 15px 30px 15px;
+    }
+    #{$self}__bg {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      min-height: 219px;
+      border-radius: 23px;
+      left: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+    #{$self}__icon {
+      --icon-size: 110px;
+      box-shadow: none;
+      border-radius: 50%;
+      background: var(--bg-color9);
+      border: 6px solid rgba(247, 245, 232, 0.04);
+      margin: 0 0 37px 0;
+      @include mixins.smooth-transition;
+      @include mixins.md {
+        margin: 0 0 25px 0;
+      }
+      svg path {
+        @include mixins.smooth-transition;
+      }
+      &::before {
+        display: none;
+      }
+    }
+    #{$self}__title {
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin: -0.23em 0 17px 0;
+    }
+    #{$self}__text {
+      margin-bottom: 0;
+    }
+    #{$self}__content {
+      position: relative;
+      z-index: 1;
+    }
+    #{$self}__number {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 40px;
+      color: #232530;
+      font-weight: 600;
+      font-family: var(--title-font);
+      @include mixins.md {
+        position: static;
+        bottom: 0px;
+        left: 0%;
+        padding-top: 17px;
+        display: block;
+        width: 100%;
+        transform: translateX(0);
+      }
+    }
+    &:hover {
+      #{$self}__icon {
+        background: #a6d719;
+        border: 6px solid #88a927;
+        svg path {
+          fill: #10131d;
+        }
+        svg {
+          animation: vsBreadcrumbShake 0.82s
+            cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+          transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+          perspective: 1000px;
+        }
+      }
+    }
+  }
+}

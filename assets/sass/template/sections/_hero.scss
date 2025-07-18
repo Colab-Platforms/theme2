@@ -1,0 +1,319 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.vs-hero {
+  $self: &;
+  &__item {
+    min-height: 947px;
+    display: flex;
+    align-items: center;
+    padding: 120px 0;
+    background-color: var(--bg-color8);
+    @include mixins.lg {
+      min-height: 600px;
+    }
+  }
+  &__content {
+    @include mixins.md {
+      text-align: center;
+    }
+  }
+  &__title {
+    text-transform: uppercase;
+    letter-spacing: -2.4px;
+    font-size: clamp(2.9rem, 0.8rem + 3.5vw, 5rem);
+    line-height: 1;
+    margin: 0 0 28px 0;
+    animation-delay: 0.8s;
+    @include mixins.sm {
+      line-height: 1.2;
+      margin: 0 0 15px 0;
+    }
+    &--highlight {
+      text-transform: uppercase;
+      display: block;
+      letter-spacing: 0;
+      font-size: clamp(3rem, 0.675rem + 4.13vw, 5.625rem);
+      background: linear-gradient(270deg, #a6d719 0%, #eeffbd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    &--sub {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: clamp(1.125rem, 1.025rem + 0.5vw, 1.625rem);
+      font-weight: 700;
+      color: var(--body-color);
+      font-family: var(--title-font);
+      text-transform: uppercase;
+      margin: 0 0 5px 0;
+      line-height: 1.2;
+      animation-delay: 0.6s;
+      @include mixins.lg {
+        margin: 0 0 10px 0;
+      }
+      @include mixins.md {
+        justify-content: center;
+      }
+      span {
+        margin: 0 0 0 -3px;
+      }
+    }
+    &--img {
+      margin-top: -20px;
+      animation: spin 10s linear infinite;
+      @include mixins.xl {
+        margin-top: -5px;
+        max-width: 50px;
+      }
+      @include mixins.sm {
+        display: none !important;
+      }
+    }
+  }
+  &__text {
+    font-size: clamp(1rem, 0.975rem + 0.13vw, 1.125rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--white-color);
+    letter-spacing: 0.9px;
+    margin: -0.23em 0 40px 0;
+    animation-delay: 1s;
+    @include mixins.sm {
+      margin: -0.23em 0 20px 0;
+      line-height: 1.3;
+    }
+    span {
+      color: var(--vs-theme-color);
+    }
+  }
+  &__loading {
+    display: inline-flex;
+    height: 19px;
+    align-items: center;
+    padding-left: 11px;
+    transform: translateY(2px);
+  }
+  &__bar {
+    width: 26px;
+    height: 60px;
+    background-color: var(--vs-theme-color);
+    clip-path: polygon(26% 0, 41% 0, 76% 100%, 60% 100%);
+    animation: move 1.5s infinite;
+    transform: scaleY(0.3);
+    opacity: 0.5;
+    margin-left: -18px;
+    &--small {
+      clip-path: polygon(42% 43%, 49% 18%, 76% 100%, 61% 100%);
+    }
+    &:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    &:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    &:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    &:nth-child(7) {
+      animation-delay: 0.7s;
+    }
+
+    &:nth-child(8) {
+      animation-delay: 0.8s;
+    }
+  }
+  &__play {
+    margin: 0 0 0 23px;
+    @include mixins.sm {
+      margin: 0 0 0 0px;
+    }
+    & > i {
+      --icon-size: 40px;
+      font-size: var(--icon-font-size, 18px);
+      color: var(--text-black-color);
+      @include mixins.md {
+        --icon-size: 80px;
+        font-size: var(--icon-font-size, 30px);
+      }
+    }
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    animation-delay: 1.2s;
+    flex-wrap: wrap;
+    @include mixins.md {
+      gap: 25px;
+      flex-direction: column;
+    }
+  }
+  &__link {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--body-color);
+    text-transform: capitalize;
+    font-family: var(--title-font);
+    padding-left: 14px;
+    @include mixins.sm {
+      padding-left: 0;
+    }
+  }
+  &--style2 {
+    #{$self}__image {
+      margin-right: -148px;
+      margin-left: -110px;
+      animation-delay: 0.4s;
+      @include mixins.xl {
+        margin-right: 0;
+        margin-left: -115px;
+      }
+      @include mixins.lg {
+        margin-right: 0;
+        margin-left: -80px;
+      }
+      @include mixins.md {
+        margin-right: 0;
+        margin-left: 0px;
+      }
+    }
+  }
+  &--style3 {
+    #{$self}__item {
+      min-height: 1207px;
+      background-color: transparent;
+      padding: 239px 0 0 0;
+      align-items: flex-start;
+      @include mixins.md {
+        min-height: 1000px;
+        padding: 140px 0 0 0;
+      }
+    }
+    #{$self}__content {
+      text-align: center;
+    }
+    #{$self}__title {
+      margin: 0 0 24px 0;
+      text-shadow: 0px 4px 0px rgba(166, 215, 25, 0.5); /* Customize values as needed */
+      font-size: clamp(2.188rem, 1.5rem + 3.44vw, 5.625rem);
+      &--sub {
+        display: inline-flex;
+        letter-spacing: 0.9px;
+        color: var(--vs-theme-color);
+        font-size: 18px;
+        margin: 0 0 20px 0;
+        padding: 12.21px 40px;
+        background-color: rgba(166, 215, 25, 0.2);
+        border: 2px dashed rgba(166, 215, 25, 0.7);
+        font-weight: 600;
+        position: relative;
+        .dots-left,
+        .dots-right {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          &::before,
+          &::after {
+            position: absolute;
+            content: '';
+            width: 7px;
+            height: 7px;
+            background-color: var(--vs-theme-color);
+          }
+        }
+        .dots-left {
+          &::before,
+          &::after {
+            left: -2.5px;
+          }
+          &::before {
+            top: -2.5px;
+          }
+          &::after {
+            bottom: -2.5px;
+          }
+        }
+        .dots-right {
+          &::before,
+          &::after {
+            right: -2.5px;
+          }
+          &::before {
+            top: -2.5px;
+          }
+          &::after {
+            bottom: -2.5px;
+          }
+        }
+      }
+    }
+    #{$self}__brand {
+      &--logo {
+        display: block;
+        margin: 0 auto 28px;
+        animation-delay: 0.4s;
+      }
+    }
+    #{$self}__buttons {
+      justify-content: center;
+    }
+    #{$self}__text {
+      margin: -0.23em 0 35px 0;
+    }
+  }
+  .hero-ele1,
+  .hero-ele2,
+  .hero-ele3,
+  .hero-ele4 {
+    position: absolute;
+  }
+  .hero-ele1 {
+    top: 182px;
+    left: 85px;
+    animation-delay: 0s;
+  }
+  .hero-ele2 {
+    top: 225px;
+    left: 52%;
+    animation-delay: 0.2s;
+    @include mixins.lg {
+      display: none;
+    }
+  }
+  .hero-ele3 {
+    top: 185px;
+    right: 250px;
+    animation: spin 15s infinite linear;
+    @include mixins.md {
+      top: 140px;
+      right: 25px;
+    }
+    @include mixins.sm {
+      display: none;
+    }
+  }
+  .hero-ele4 {
+    left: 70px;
+    bottom: 98px;
+    animation-delay: 0.4s;
+  }
+}

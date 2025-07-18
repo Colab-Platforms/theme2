@@ -1,0 +1,176 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.image-scale-hover {
+  overflow: hidden;
+
+  img {
+    transition: all ease 0.4s;
+    transform: scale(1.001);
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.alert-dismissible .btn-close {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.z-index-step1 {
+  position: relative;
+  z-index: 4 !important;
+}
+
+.z-index-common {
+  position: relative;
+  z-index: 3;
+}
+
+.z-index-n1 {
+  z-index: -1;
+}
+
+.media-body {
+  flex: 1;
+}
+
+.badge {
+  position: absolute;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline-block;
+  text-align: center;
+  background-color: vars.$vs-theme-color;
+  color: vars.$white-color;
+  padding: 0.35em 0.55em;
+  border-radius: 50%;
+}
+
+.hr-style1 {
+  background-color: vars.$white-color;
+  margin: 20px 0 30px 0;
+}
+
+.new-label {
+  font-size: 12px;
+  background-color: vars.$error-color;
+  color: vars.$white-color;
+  line-height: 1;
+  padding: 1px 5px;
+  border-radius: 4px;
+  text-transform: capitalize;
+  position: relative;
+  top: -1px;
+}
+
+.vs-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  gap: 17px;
+  li {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: capitalize;
+    display: flex;
+    position: relative;
+    gap: 12px;
+    &::before {
+      content: '\f336';
+      font-family: var(--icon-font);
+      color: var(--vs-theme-color);
+    }
+  }
+  &--style2,
+  &--style3 {
+    gap: 10px;
+    li {
+      font-weight: 500;
+      font-size: 15px;
+      &::before {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+  &--style3 {
+    gap: 10px;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 87%;
+    @include mixins.lg {
+      max-width: 100%;
+    }
+    @include mixins.sm {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  &--style4 {
+    gap: 10px;
+    @include mixins.sm {
+      justify-content: center;
+    }
+    li {
+      font-family: var(--title-font);
+    }
+  }
+}
+
+.vs-page {
+  &__main {
+    perspective: 1000px;
+    &--layouts {
+      position: relative;
+      z-index: 999;
+      background-color: var(--bg-color);
+    }
+  }
+}
+
+.section-bg1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 767px;
+}
+
+.vs-tab {
+  .tab-pane {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out; /* Smooth fade duration */
+  }
+  .tab-pane.show {
+    opacity: 1;
+  }
+}
+
+.btn-text--link {
+  text-transform: uppercase;
+  color: var(--vs-theme-color);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--title-font);
+  gap: 6px;
+}
+
+.background-image.background-position-top {
+  background-position: top center;
+}
+
+.vs-theme-color {
+  color: var(--vs-theme-color);
+}
+.h-100vh {
+  height: 100dvh;
+}

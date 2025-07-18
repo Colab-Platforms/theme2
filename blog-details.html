@@ -1,0 +1,101 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ColabEsports Blog Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Your CSS links here -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+  <style>
+    body { background: #121212; color: #fff; font-family: 'Poppins', sans-serif; }
+    .blog-details-container { max-width: 800px; margin: 40px auto; background: #181a20; border-radius: 16px; box-shadow: 0 8px 32px #0005; padding: 32px 24px; }
+    .blog-details-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 24px; }
+    .blog-details-title { font-size: 2.2rem; color: #ffa700; margin-bottom: 12px; }
+    .blog-details-meta { color: #aaa; margin-bottom: 18px; }
+    .blog-details-content { font-size: 1.15rem; line-height: 1.7; color: #fff; }
+    .blog-details-share { margin-top: 32px; }
+    .blog-details-share a { color: #ffa700; margin-right: 12px; font-size: 1.3em; }
+  </style>
+</head>
+<body>
+  <div class="blog-details-container" id="blogDetailsContainer">
+    <p>Loading...</p>
+  </div>
+
+  <!-- Firebase SDKs and your firebase.js module -->
+  <script type="module">
+    import {
+      db,
+      doc,
+      getDoc
+    } from './assets/firebase/firebase.js';
+
+    // Helper: Get blog ID from URL
+    function getBlogIdFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    // Helper: Escape HTML (for security)
+    function escapeHTML(str) {
+      return String(str || '')
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    // Main function
+    async function showBlogDetails() {
+      const id = getBlogIdFromUrl();
+      const container = document.getElementById('blogDetailsContainer');
+      if (!id) {
+        container.innerHTML = "<p style='color:#fff'>No blog ID provided.</p>";
+        return;
+      }
+
+      try {
+        const blogRef = doc(db, "blogs", id);
+        const blogSnap = await getDoc(blogRef);
+
+        if (!blogSnap.exists()) {
+          container.innerHTML = "<p style='color:#fff'>Blog not found.</p>";
+          return;
+        }
+
+        const blog = blogSnap.data();
+        // Use detailLink as full content, fallback to description
+        const fullContent = blog.detailLink && blog.detailLink.trim() ? blog.detailLink : blog.description;
+        // If you store HTML, you can use it directly. If it's plain text, convert newlines to <br>
+        const contentHtml = escapeHTML(fullContent).replace(/\n/g, "<br>");
+
+        container.innerHTML = `
+          <img src="${escapeHTML(blog.imageUrl)}" alt="${escapeHTML(blog.title)}" class="blog-details-image">
+          <div class="blog-details-meta">
+            <span>By ${escapeHTML(blog.author)}</span> &nbsp;|&nbsp;
+            <span>${blog.createdAt?.seconds ? new Date(blog.createdAt.seconds * 1000).toLocaleDateString() : ''}</span>
+          </div>
+          <h1 class="blog-details-title">${escapeHTML(blog.title)}</h1>
+          <div class="blog-details-content">${contentHtml}</div>
+          <div class="blog-details-share">
+            <span>Share:</span>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        `;
+      } catch (err) {
+        container.innerHTML = "<p style='color:#fff'>Error loading blog details.</p>";
+        console.error(err);
+      }
+    }
+
+    showBlogDetails();
+  </script>
+  <!-- FontAwesome for icons (if not already included) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+</body>
+</html>

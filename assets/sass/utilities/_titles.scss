@@ -1,0 +1,129 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+
+.title-style {
+  $self: &;
+  margin-bottom: calc(var(--section-title-space) - 20px);
+  @include mixins.md {
+    margin-bottom: calc(var(--section-title-space) - 50px);
+  }
+  &__small {
+    color: var(--vs-theme-color);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    font-family: var(--title-font);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: -0.24em 0 20px 0;
+  }
+  &__big {
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    @include mixins.xs {
+      font-size: 18px;
+    }
+    span {
+      color: var(--vs-theme-color);
+      font-size: clamp(22px, 4vw, 24px);
+      display: block;
+    }
+    &--second {
+      margin: 0 0 20px 0;
+    }
+  }
+  &__element {
+    margin: 0 0 -125px 0;
+    @include mixins.lg {
+      margin: 0 0 -70px 0;
+    }
+    @include mixins.md {
+      margin: 0 0 -50px 0;
+    }
+    @include mixins.sm {
+      margin: 0 0 0 0;
+    }
+  }
+  &.left {
+    text-align: left;
+    #{$self}__big,
+    #{$self}__small {
+      text-align: left;
+    }
+    #{$self}__small {
+      justify-content: flex-start;
+    }
+  }
+  &.center {
+    text-align: center;
+    #{$self}__big,
+    #{$self}__small {
+      text-align: center;
+    }
+    #{$self}__small {
+      justify-content: center;
+    }
+  }
+  &.right {
+    text-align: right;
+    #{$self}__big,
+    #{$self}__small {
+      text-align: right;
+    }
+    #{$self}__small {
+      justify-content: flex-end;
+    }
+  }
+  &--style2 {
+    #{$self}__big {
+      position: relative;
+      span {
+        font-size: clamp(1.125rem, 0.85rem + 1.38vw, 2.5rem);
+        display: inline-block;
+      }
+      img {
+        position: absolute;
+        top: -30%;
+        right: 0;
+        @include mixins.lg {
+          display: none;
+        }
+      }
+    }
+  }
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    font-family: var(--title-font);
+    text-transform: uppercase;
+    gap: 10px;
+    &:hover {
+      color: var(--vs-theme-color);
+    }
+  }
+  &--right-side {
+    margin-top: 0;
+  }
+  &--style3 {
+    #{$self}__big {
+      position: relative;
+      & > span {
+        font-size: 36px;
+        color: var(--white-color);
+        display: block;
+        font-weight: 300;
+        & > span {
+          display: inline-block;
+          font-size: 36px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

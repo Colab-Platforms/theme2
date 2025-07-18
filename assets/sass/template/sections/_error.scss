@@ -1,0 +1,53 @@
+@use "base/variables" as vars;
+@use "base/mixins" as mixins;
+.error-area {
+  &__content {
+    text-align: center;
+  }
+  &__header {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    color: var(--white-color);
+    text-transform: uppercase;
+    font-size: 30px;
+    letter-spacing: 4.5px;
+    margin-right: -4.5px;
+    line-height: 1;
+    gap: 17px;
+    margin-bottom: 40px;
+    font-family: var(--title-font);
+    span {
+      background-color: var(--vs-border-color5);
+      width: 60px;
+      height: 4px;
+      margin-top: 8px;
+      display: inline-block;
+      position: relative;
+      transform: translateY(-5px);
+    }
+  }
+  &__number {
+    font-size: clamp(150px, 4vw, 150px);
+    font-weight: 300;
+    margin-bottom: 0;
+    letter-spacing: 0.4px;
+    color: var(--vs-theme-color);
+    @include mixins.sm {
+      font-size: clamp(110px, 4vw, 110px);
+    }
+  }
+  &__divider {
+    padding: 20px 0 45px;
+    line-height: 1;
+  }
+  &__text {
+    font-size: 30px;
+    letter-spacing: 4.5px;
+    color: var(--text-color2);
+    text-transform: uppercase;
+    font-family: var(--title-font);
+    display: block;
+    line-height: 1.2;
+  }
+}

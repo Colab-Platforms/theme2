@@ -1,0 +1,275 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.form-style1 {
+  background-color: vars.$vs-theme-color;
+  --bs-gutter-x: 20px;
+  padding: 70px 80px 80px 80px;
+
+  .form-title {
+    color: vars.$white-color;
+    text-align: center;
+    margin: 0 0 27px 0;
+    padding: 0 0 17px 0;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      // margin: 0 0 0 -50px;
+      height: 1px;
+      border-radius: 5px;
+      background-color: #0844bc;
+      background-color: vars.$white-color;
+      opacity: 0.3;
+    }
+  }
+
+  .vs-btn {
+    width: 100%;
+  }
+
+  textarea,
+  input {
+    height: 55px;
+    background-color: vars.$white-color;
+    font-size: 16px;
+    font-family: vars.$body-font;
+    color: vars.$body-color;
+    border-radius: 5px;
+  }
+
+  textarea {
+    min-height: 180px;
+    resize: none;
+  }
+}
+
+.email-subscription {
+  position: relative;
+  padding: 137px 0 0 0;
+  text-align: center;
+  z-index: 1;
+  @include mixins.sm {
+    padding: 65px 0 0 0;
+  }
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
+  &__title {
+    font-size: clamp(1.25rem, 1.05rem + 1vw, 2.25rem);
+    margin: 0 0 40px 0;
+    letter-spacing: 1.1px;
+    text-transform: capitalize;
+    line-height: 1.39;
+  }
+  &__form {
+    display: flex;
+    align-items: stretch;
+    border: 3px solid vars.$vs-theme-color;
+    padding: 3px;
+    background-color: transparent;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    @include mixins.sm {
+      margin-bottom: 20px;
+    }
+  }
+  &__input {
+    flex: auto;
+    background-color: transparent;
+    border: none;
+    line-height: 1.92;
+    letter-spacing: 0.39px;
+    color: var(--white-color);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 20px 5px 20px;
+    @include mixins.smooth-transition;
+    @include mixins.sm {
+      text-align: center;
+    }
+    &::placeholder {
+      @include mixins.smooth-transition;
+      opacity: 1;
+      visibility: visible;
+      color: var(--text-color3);
+    }
+    &:focus {
+      &::placeholder {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+  &__btn {
+    clip-path: none;
+    padding: 13.5px 24px;
+    @include mixins.sm {
+      width: 100%;
+    }
+    &::before,
+    &::after {
+      background-color: var(--vs-theme-color2);
+    }
+  }
+  &__right {
+    position: relative;
+    @include mixins.sm {
+      flex: none;
+      width: 100%;
+    }
+    &::before {
+      position: absolute;
+      content: '';
+      width: 1px;
+      height: 52px;
+      background-color: vars.$vs-theme-color;
+      display: inline-block;
+      left: -4px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.review-form {
+  .comment-respond {
+    margin-bottom: 0;
+    .form-group {
+      margin-bottom: var(--bs-gutter-x);
+    }
+    .form-control {
+      border: 1px solid rgba($color: #fff, $alpha: 0.1);
+      color: var(--smoke-color);
+      &::placeholder {
+        color: var(--smoke-color);
+      }
+    }
+    textarea.form-control {
+      height: 145px;
+      min-height: 145px;
+    }
+    .rating-select {
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-bottom: 20px;
+      align-items: center;
+      label {
+        display: block;
+        color: var(--text-color2);
+        letter-spacing: 0.5px;
+        font-weight: 700;
+        margin-bottom: 0px;
+      }
+      p.stars {
+        font-size: 14px;
+        a {
+          width: 16px;
+          &::before {
+            color: var(--vs-theme-color);
+            width: 16px;
+          }
+        }
+      }
+    }
+    .vs-btn {
+      background-color: var(--vs-theme-color);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      &::before,
+      &::after {
+        background-color: var(--vs-theme-color2);
+      }
+    }
+  }
+}
+
+.custom-checkbox,
+.wc_payment_method,
+.woocommerce-shipping-methods,
+#ship-to-different-address {
+  padding: 10px 0 20px 0;
+  display: flex;
+  align-items: center;
+  label {
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  input[type='checkbox'],
+  input[type='radio'] {
+    display: none;
+    & ~ label:before {
+      content: '\f00c';
+      background-color: transparent;
+      border: 1px solid rgba($color: #fff, $alpha: 0.2);
+      border-radius: 0;
+      height: 20px;
+      width: 20px;
+      min-width: 20px;
+      line-height: 20px;
+      font-family: var(--icon-font);
+      text-align: center;
+      color: var(--bg-color);
+      font-size: 0px;
+      @include mixins.smooth-transition;
+    }
+    &:checked {
+      ~ label {
+        &:before {
+          background-color: vars.$vs-theme-color;
+          border-color: transparent;
+          font-size: 16px;
+          @include mixins.smooth-transition;
+        }
+      }
+    }
+  }
+}
+
+.form-style2 {
+  .form-control {
+    background-color: var(--bg-color9);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px 20px;
+    color: var(--white-color);
+    font-weight: 600;
+    font-family: var(--title-font);
+    transition: all 0.4s ease-in-out;
+    &::placeholder {
+      color: var(--body-color);
+      opacity: 1;
+      visibility: visible;
+      transform: scaleX(1);
+      transform-origin: left;
+      transition: all 0.4s ease-in-out;
+    }
+    &:focus {
+      border: 2px solid rgba(166, 215, 25, 0.5);
+      &::placeholder {
+        opacity: 0;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: all 0.4s ease-in-out;
+      }
+    }
+  }
+  input.form-control {
+    height: 66px;
+  }
+  textarea.form-control {
+    height: 158px;
+  }
+}

@@ -1,0 +1,316 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.vs-footer {
+  $self: &;
+  &--fixed {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    @include mixins.xl {
+      position: static;
+    }
+  }
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    &.style1 {
+      justify-content: flex-start;
+    }
+    a {
+      display: inline-block;
+    }
+  }
+  &__widgets {
+    background-color: #20222d;
+    padding: 85px 0 55px 0;
+  }
+  &__title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: -3px 0 35px 0;
+    &--sub {
+      font-size: 16px;
+      text-transform: uppercase;
+      margin: -3px 0 25px 0;
+      letter-spacing: 0.48px;
+      span {
+        color: var(--vs-theme-color);
+      }
+    }
+  }
+  &__menu {
+    list-style: none;
+    padding-left: 0;
+    li {
+      margin-bottom: 12px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    a {
+      display: inline-block;
+      color: var(--body-color);
+      letter-spacing: 0.8px;
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: capitalize;
+      padding-left: 20px;
+      position: relative;
+      &::before,
+      &::after {
+        position: absolute;
+        content: '';
+        width: 8.13px;
+        height: 8px;
+        display: inline-block;
+        background-color: #585857;
+        left: 0;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%) scale(1);
+        transition: all 0.4s ease;
+        animation: zoomBlink 0s infinite ease-in-out;
+      }
+      &::after {
+        transform: translateY(-50%) scale(0);
+      }
+      &:hover {
+        color: var(--vs-theme-color);
+        &::after {
+          background-color: var(--vs-theme-color);
+          transform: translateY(-50%) scale(1);
+          transition: all 0.4s ease;
+        }
+        &::before,
+        &::after {
+          animation: zoomBlink 1s infinite ease-in-out;
+          transition: all 0.4s ease;
+        }
+      }
+    }
+  }
+  &__copyright {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-lighter-color);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    font-family: var(--title-font);
+    padding: 30px 0;
+    background-color: var(--bg-color6);
+    a {
+      color: var(--vs-theme-color);
+      &:hover {
+        color: var(--white-color);
+      }
+    }
+  }
+  &__sep {
+    display: block;
+    margin: 25px auto 25px;
+  }
+  &__backtotop {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--title-font);
+    letter-spacing: 1.8px;
+    color: var(--vs-theme-color);
+    i {
+      color: #616476;
+      font-size: 16px;
+    }
+  }
+  &__divider {
+    opacity: 0.7;
+    border: 4px solid #121720;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 4px;
+    margin: 5px 0 47px 0;
+  }
+  &__info {
+    letter-spacing: 0.48px;
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    span {
+      font-weight: 600;
+      color: var(--white-color);
+    }
+    a {
+      color: var(--vs-theme-color);
+      font-weight: 600;
+      &:hover {
+        color: var(--vs-theme-color2);
+      }
+    }
+  }
+  &__links {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--title-font);
+    letter-spacing: 0.39px;
+    a {
+      margin-right: 20px;
+      padding-right: 20px;
+      position: relative;
+      &::after {
+        position: absolute;
+        content: '';
+        width: 8.13px;
+        height: 8px;
+        display: inline-block;
+        background-color: #585857;
+        right: -4px;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        @include mixins.smooth-transition;
+      }
+      &:last-child {
+        margin-right: 0;
+        padding-right: 0;
+        &::after {
+          display: none;
+        }
+      }
+      &:hover {
+        color: var(--vs-theme-color);
+      }
+    }
+  }
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: #9f9f9f;
+    margin-left: 0px;
+    font-size: 15px;
+    a {
+      &:hover {
+        color: var(--vs-theme-color);
+      }
+    }
+  }
+  &__newsletter {
+    &--bottom {
+      @include mixins.sm {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+    &--divider {
+      height: 15px;
+      width: 2px;
+      background-color: #585857;
+      margin: 0 25px;
+      @include mixins.sm {
+        display: none;
+      }
+    }
+  }
+  &--style2 {
+    #{$self}__widgets {
+      background-color: var(--bg-color);
+      min-height: 560px;
+      clip-path: polygon(
+        34.79% 0px,
+        65.31% 0px,
+        70.15% 4.82%,
+        100% 5%,
+        100% 100%,
+        0px 100%,
+        0px 5%,
+        30% 5%
+      );
+    }
+  }
+}
+.vs-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  .vs-gallery__thumb {
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    border: 2.5px solid rgba($color: #434657, $alpha: 90%);
+
+    img {
+      transition: all ease 0.3s;
+      width: 100%;
+      transform: scale(1);
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--vs-theme-color);
+      z-index: 1;
+      opacity: 0;
+      visibility: hidden;
+      transition: all ease 0.4s;
+    }
+
+    .gal-btn {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: var(--icon-size, 35px);
+      height: var(--icon-size, 35px);
+      margin: calc(var(--icon-size, 35px) / -2) 0 0
+        calc(var(--icon-size, 35px) / -2);
+      text-align: center;
+      font-size: 16px;
+      color: var(--bg-color);
+      background-color: transparent;
+      border-radius: 50%;
+      transition: all ease 0.4s;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        transform: scale(1);
+        background-color: var(--bg-color);
+        color: var(--white-color);
+      }
+    }
+
+    &:hover {
+      &:before {
+        opacity: 0.8;
+        visibility: visible;
+      }
+
+      .gal-btn {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0.1s;
+      }
+
+      img {
+        transform: scale(1.12);
+      }
+    }
+  }
+}

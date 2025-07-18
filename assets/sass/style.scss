@@ -1,0 +1,272 @@
+/*
+Template Name: Roda
+Template URL: https://html.vecuro.com/roda
+Description: Roda - Gaming Store & eCommerce HTML5 Template
+Author: vecuro
+Author URI: https://themeforest.net/user/vecuro_themes
+Version: 1.0.0
+*/
+/*=================================
+    CSS Index Here
+==================================*/
+/*
+01. Theme Base
+    1.1. Mixin
+    1.2. Function
+    1.3. Variable
+    1.4. Typography
+    1.5. Extend
+    1.7. Wordpress Default
+02. Reset
+    2.1. Container
+    2.2. Grid
+    2.3. Input
+    2.4. Slick Slider
+    2.5. Mobile Menu
+03. Utilities
+    3.1. Preloader
+    3.2. Buttons
+    3.3. Titles
+    3.4. Common
+    3.6. Font
+    3.7. Background
+    3.8. Text Color
+    3.9. Overlay
+    3.10. Animation
+    3.11. Back To Top
+04. Template Style
+    4.1. Widget
+    4.2. Header
+    4.3. Footer
+    4.4. Breadcrumb
+    4.5. Pagination
+    4.6. Blog
+    4.7. Comments
+    4.8. Hero Area
+    4.9. Error    
+    4.10. Feature
+    4.11. About
+    4.12. Service
+    4.13. Counter
+    4.14. Team
+    4.15. Process
+    4.16. Accordion
+    4.17. Simple Sections
+    4.18. Testimonial
+    4.19. Popup Side Menu
+    4.20. Price Plan
+    4.21. Forms Style
+    4.22. Projects
+    4.23. Contact
+    4.24. Event
+    4.25. CTA
+    4.26. popupsearch
+    4.27. carouselTicker
+    4.28. game
+    4.29. video
+    4.30. brand
+    4.31. product
+    4.32. schedule
+    4.33. woocommerce
+    4.34. nft
+    4.35. discount
+    4.36. gallery
+    4.37. cart
+05. Spacing
+*/
+/*=================================
+    CSS Index End
+==================================*/
+
+/*=================================
+   01. Theme Base
+==================================*/
+/*------------------- 1.1. Mixin -------------------*/
+@use 'base/mixins' as mixins;
+
+/*------------------- 1.2. Function -------------------*/
+@use 'base/function' as func;
+
+/*------------------- 1.3. Variable-------------------*/
+@use 'base/variables' as vars;
+
+/*------------------- 1.5. Reset -------------------*/
+@use 'base/reset';
+
+/*------------------- 1.6. Responsive -------------------*/
+@use 'base/responsive';
+
+/*------------------- 1.7. Wordpress Default -------------------*/
+@use 'base/wpdefault';
+
+/*=================================
+    02. Reset
+==================================*/
+/*------------------- 2.1. Container -------------------*/
+@use 'reset/container';
+
+/*------------------- 2.2. Grid -------------------*/
+@use 'reset/grid';
+
+/*------------------- 2.3. Input -------------------*/
+@use 'reset/input';
+
+/*------------------- 2.4. Slick Slider -------------------*/
+@use 'reset/slick-slider';
+
+/*------------------- 2.5. Mobile Menu -------------------*/
+@use 'reset/vsmenu';
+
+/*=================================
+    03. Utilities
+==================================*/
+/*------------------- 3.6. Font -------------------*/
+@use 'utilities/font';
+
+/*------------------- 3.1. Preloader -------------------*/
+@use 'utilities/preloader';
+
+/*------------------- 3.2. Buttons -------------------*/
+@use 'utilities/btns';
+
+/*------------------- 3.3. Titles -------------------*/
+@use 'utilities/titles';
+
+/*------------------- 3.4. Common -------------------*/
+@use 'utilities/common';
+
+/*------------------- 3.7. Background -------------------*/
+@use 'utilities/background';
+
+/*------------------- 3.8. Text Color -------------------*/
+@use 'utilities/text-color';
+
+/*------------------- 3.9. Overlay -------------------*/
+@use 'utilities/overlay';
+
+/*------------------- 3.10. Animation -------------------*/
+@use 'utilities/animation';
+
+/*------------------- 3.11. Back To Top -------------------*/
+@use 'utilities/backtotop';
+
+/*=================================
+    04. Template Style
+==================================*/
+/*------------------- 4.1. Widget  -------------------*/
+@use 'template/widgets/widget-default-list';
+@use 'template/widgets/widget-sidebar';
+@use 'template/widgets/widget-footer';
+
+/*------------------- 4.2. Header  -------------------*/
+@use 'template/headers/header';
+
+/*------------------- 4.3. Footer  -------------------*/
+@use 'template/footers/footer';
+
+/*------------------- 4.4. Breadcumb  -------------------*/
+@use 'template/breadcumb/breadcumb-v1';
+
+/*------------------- 4.5. Pagination  -------------------*/
+@use 'template/sections/pagination-v1';
+
+/*------------------- 4.6. Blog  -------------------*/
+@use 'template/sections/blog';
+
+/*------------------- 4.7. Comments  -------------------*/
+@use 'template/sections/comments';
+
+/*------------------- 4.8. Hero Area  -------------------*/
+@use 'template/sections/hero';
+
+/*------------------- 4.9. Error  -------------------*/
+@use 'template/sections/error';
+
+/*------------------- 4.10. Feature  -------------------*/
+@use 'template/sections/feature';
+
+/*------------------- 4.11. About  -------------------*/
+@use 'template/sections/about';
+
+/*------------------- 4.12. Service  -------------------*/
+@use 'template/sections/service';
+
+/*------------------- 4.13. Counter  -------------------*/
+@use 'template/sections/counter';
+
+/*------------------- 4.14. Team  -------------------*/
+@use 'template/sections/team';
+
+/*------------------- 4.15. Process  -------------------*/
+@use 'template/sections/process';
+
+/*------------------- 4.16. Accordion  -------------------*/
+@use 'template/sections/accordion';
+
+/*------------------- 4.17. Simple Sections  -------------------*/
+@use 'template/sections/simple-sections';
+
+/*------------------- 4.18. Testimonial  -------------------*/
+@use 'template/sections/testimonoial';
+
+/*------------------- 4.19. Popup Side Menu  -------------------*/
+@use 'template/sections/sidemenu-v1';
+
+/*------------------- 4.20. Price Plan  -------------------*/
+@use 'template/sections/price-plan';
+
+/*------------------- 4.21. Forms Style  -------------------*/
+@use 'template/sections/forms';
+
+/*------------------- 4.22. Projects  -------------------*/
+@use 'template/sections/project';
+
+/*------------------- 4.23. Contact  -------------------*/
+@use 'template/sections/contact';
+
+/*------------------- 4.24. Event  -------------------*/
+@use 'template/sections/event';
+
+/*------------------- 4.25. CTA  -------------------*/
+@use 'template/sections/cta';
+
+/*------------------- 4.26. popupsearch  -------------------*/
+@use 'template/sections/popupsearch-v1';
+
+/*------------------- 4.27. carouselTicker  -------------------*/
+@use 'template/sections/carouselTicker';
+
+/*------------------- 4.28. game  -------------------*/
+@use 'template/sections/game';
+
+/*------------------- 4.29. video  -------------------*/
+@use 'template/sections/video';
+
+/*------------------- 4.30. brand  -------------------*/
+@use 'template/sections/brand';
+
+/*------------------- 4.31. product  -------------------*/
+@use 'template/sections/product';
+
+/*------------------- 4.32. schedule  -------------------*/
+@use 'template/sections/schedule';
+
+/*------------------- 4.33. woocommerce  -------------------*/
+@use 'template/sections/woocommerce';
+
+/*------------------- 4.34. nft  -------------------*/
+@use 'template/sections/nft';
+
+/*------------------- 4.35. discount  -------------------*/
+@use 'template/sections/discount';
+
+/*------------------- 4.36. gallery  -------------------*/
+@use 'template/sections/gallery';
+
+/*------------------- 4.37. cart  -------------------*/
+@use 'template/sections/cart';
+
+/*=================================
+    05. Spacing
+==================================*/
+@use 'spacing/spacing';

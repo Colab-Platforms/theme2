@@ -1,0 +1,100 @@
+@use 'base/variables' as vars;
+@use 'base/mixins' as mixins;
+.testimonials-item {
+  background: rgb(35, 37, 48, 0.8);
+  border: 2px solid rgba(50, 52, 65, 0.6);
+  border-radius: 46px;
+  padding: 52px 35px 40px 42px;
+  position: relative;
+  z-index: 1;
+  @include mixins.smooth-transition;
+  &:hover {
+    border-color: var(--vs-theme-color);
+  }
+  @include mixins.sm {
+    padding: 30px 15px 25px 15px;
+  }
+  &__ellipse1,
+  &__ellipse2 {
+    position: absolute;
+    border-radius: 46px;
+    z-index: -1;
+  }
+  &__ellipse1 {
+    left: -2px;
+    bottom: -2px;
+  }
+  &__ellipse2 {
+    right: -2px;
+    top: -2px;
+  }
+  &__icon {
+    &-quote {
+      position: absolute;
+      font-size: 36px;
+      color: var(--vs-theme-color);
+      letter-spacing: 1.1px;
+      top: 37px;
+      right: 45px;
+      z-index: -1;
+      @include mixins.sm {
+        top: 20px;
+        right: 16px;
+      }
+    }
+  }
+  &__date {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white-color);
+    letter-spacing: 0.7px;
+    font-family: var(--title-font);
+    text-transform: uppercase;
+    display: block;
+    margin: 0 0 18px 0;
+  }
+  &__text {
+    letter-spacing: 0.4px;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-family: var(--title-font);
+    line-height: 27px;
+    margin: 0 0 28px 0;
+  }
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-top: 24px;
+    position: relative;
+    &::before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: #3a3d4b;
+      top: 0px;
+      left: 0;
+      right: 0;
+      border-radius: 100%;
+    }
+    &-image {
+      border-radius: 50%;
+      border: 3px solid var(--vs-border-color4);
+    }
+    &-name {
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: capitalize;
+      letter-spacing: 0.9px;
+      margin: 0 0 6px 0;
+    }
+    &-position {
+      color: var(--vs-theme-color);
+      text-transform: capitalize;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+  }
+}

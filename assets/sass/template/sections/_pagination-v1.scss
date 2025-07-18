@@ -1,0 +1,149 @@
+@use "base/variables" as vars;
+@use "base/mixins" as mixins;
+.vs-pagination {
+  margin-bottom: 30px;
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  li {
+    display: inline-block;
+    margin: 0 0px;
+    list-style-type: none;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  span,
+  a {
+    display: inline-block;
+    font-family: vars.$title-font;
+    color: vars.$body-color;
+    text-align: center;
+    border: none;
+    width: 57px;
+    height: 56px;
+    line-height: 56px;
+    font-weight: 800;
+    font-size: 16px;
+    z-index: 1;
+    border-radius: 5px;
+    position: relative;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--bg-color3);
+      border: 1px solid var(--vs-stroke-color);
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      opacity: 70%;
+      z-index: -1;
+    }
+
+    &.active,
+    &:hover {
+      box-shadow: none;
+      color: var(--vs-theme-color);
+    }
+  }
+}
+
+.post-pagination {
+  padding: 50px 0 0 0;
+}
+
+.post-pagi-box {
+  display: flex;
+  align-items: center;
+
+  > a {
+    color: var(--body-color);
+    font-weight: 600;
+    font-size: 16px;
+    font-family: var(--title-font);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    i {
+      color: var(--vs-theme-color);
+    }
+
+    &:hover {
+      color: vars.$vs-theme-color;
+    }
+  }
+
+  img {
+    width: 80px;
+    margin-right: 25px;
+  }
+
+  &.next {
+    flex-direction: row-reverse;
+
+    img {
+      margin-right: 0;
+      margin-left: 25px;
+    }
+  }
+}
+
+.pagi-icon {
+  color: #f0f0f0;
+  font-size: 40px;
+}
+
+@include mixins.sm {
+  .vs-pagination {
+    span,
+    a {
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      font-size: 14px;
+      padding: 0 10px;
+    }
+  }
+
+  .post-pagi-box {
+    > a {
+      font-size: 12px;
+    }
+
+    img {
+      width: 40px;
+      margin-right: 15px;
+    }
+
+    &.next img {
+      margin-right: 0;
+      margin-left: 15px;
+    }
+  }
+}
