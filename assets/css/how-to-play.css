@@ -1,4 +1,3 @@
-/* How to Play Page Styles */
 :root {
     --primary: #DA2700;
     --secondary: #FFA700;
@@ -9,7 +8,7 @@
     --gradient-1: linear-gradient(270deg, #DA2A00 60%, #FFA700 110%);
 }
 
-/* Main Content Styles */
+
 .terms-policy {
     background-color: #000000;
     color: var(--light);
@@ -35,7 +34,7 @@
     z-index: 1;
 }
 
-/* Section Styles */
+
 .terms-policy__section {
     margin-bottom: 40px;
     position: relative;
@@ -59,7 +58,7 @@
     box-shadow: 0 0 15px var(--primary);
 }
 
-/* Typography */
+
 .terms-policy h2 {
     font-size: 28px;
     font-weight: 700;
@@ -82,7 +81,7 @@
     color: var(--text-gray);
 }
 
-/* Lists */
+
 .terms-policy ul {
     margin-bottom: 20px;
     padding-left: 20px;
@@ -106,7 +105,6 @@
     border-radius: 50%;
 }
 
-/* Components */
 .terms-policy__date {
     display: inline-block;
     padding: 5px 15px;
@@ -129,7 +127,7 @@
     margin-bottom: 0;
 }
 
-/* Contact Section */
+
 .terms-policy__contact {
     background-color: rgba(255, 255, 255, 0.05);
     padding: 25px;
@@ -155,7 +153,7 @@
     text-decoration: underline;
 }
 
-/* Decorative Shapes */
+
 .terms-policy__shape {
     position: absolute;
     z-index: 0;
@@ -173,7 +171,6 @@
     animation: float 8s ease-in-out infinite;
 }
 
-/* Step Numbers */
 .terms-policy__number {
     display: inline-block;
     width: 30px;
@@ -198,7 +195,6 @@
     margin-bottom: 0;
 }
 
-/* Step Cards */
 .step {
     background: #141414;
     border-left: 5px solid var(--primary);
@@ -223,23 +219,26 @@
     margin-bottom: 8px;
 }
 
-/* Animations */
 @keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0); }
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
-/* UI Elements */
 .auth-form-side,
-.logged-in-state,
-.profile-menu,
-#kycSteps,
-.status-icon.uploaded {
+#kycSteps:not(.active),
+.status-icon.uploaded:not(.active) {
     display: none;
 }
 
-/* Layout */
 .subscription-section {
     margin-bottom: 150px;
 }
@@ -252,7 +251,6 @@
     margin-left: 180px;
 }
 
-/* Icons */
 .fa-search {
     color: #f6f5f5;
     font-size: 20px;
@@ -262,16 +260,15 @@
     padding: 10px 20px;
 }
 
-/* Responsive Design */
 @media (max-width: 991px) {
     .terms-policy {
         padding: 40px 0;
     }
-    
+
     .terms-policy h2 {
         font-size: 24px;
     }
-    
+
     .terms-policy h3 {
         font-size: 20px;
     }
@@ -281,6 +278,7 @@
     h1 {
         font-size: 2rem;
     }
+
     .step h2 {
         font-size: 1.3rem;
     }

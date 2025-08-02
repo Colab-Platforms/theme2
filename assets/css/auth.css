@@ -493,7 +493,7 @@
     .menu-option:hover {
       background-color: rgba(0, 0, 0, 0.2);
       transform: translateX(-5px);
-      color: var(--bg-color);
+      /* color: var(--bg-color); */
       text-decoration: none;
     }
 
