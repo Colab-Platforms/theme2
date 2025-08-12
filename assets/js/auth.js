@@ -17,6 +17,8 @@
       if (modal) {
         modal.classList.remove('show');
         document.body.style.overflow = 'auto';
+        // Mark that user has seen the modal
+        localStorage.setItem('hasSeenWelcomeModal', 'true');
       }
     }
 
@@ -277,12 +279,16 @@
     document.addEventListener('DOMContentLoaded', function() {
       console.log('DOM loaded, initializing...');
 
-      // Show modal after 3 seconds when page loads
+      // Show modal after 3 seconds when page loads (only once per user)
       setTimeout(function() {
         const token = localStorage.getItem('token');
-        if (!token && !isLoggedIn) {
-          console.log('Showing welcome modal...');
+        const hasSeenWelcomeModal = localStorage.getItem('hasSeenWelcomeModal');
+        
+        if (!token && !isLoggedIn && !hasSeenWelcomeModal) {
+          console.log('Showing welcome modal for first time...');
           showWelcomeModal();
+          // Mark that user has seen the modal
+          localStorage.setItem('hasSeenWelcomeModal', 'true');
         }
       }, 3000);
 
