@@ -2557,6 +2557,445 @@ body.scroll-locked {
 }
     </style>
 
+    <style>
+       /* Container */
+    #leaderboard-section {
+      max-width: 2500px;
+      /* margin: 2rem auto; */
+      padding: 0 1rem 4rem;
+    }
+
+    /* Header Section */
+    #leaderboard-header {
+      margin-bottom: 1rem;
+    }
+    #leaderboard-title {
+      font-weight: 700;
+      font-size: 1.7rem;
+      color: #eee;
+      margin-bottom: 0.15rem;
+    }
+    #leaderboard-update {
+      font-size: 0.85rem;
+      color: #999;
+    }
+
+    /* Table container */
+    #leaderboard-table-wrapper {
+      background-color: #1f1f1f;
+      border-radius: 8px;
+      overflow-x: auto;
+      box-shadow: 0 0 8px rgb(255 255 255 / 0.05);
+      border: 1px solid #2b2b2b;
+    }
+
+    table#leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.94rem;
+      min-width: 700px;
+      user-select: none;
+    }
+
+    /* Header row */
+    #leaderboard-table thead tr {
+      border-bottom: 1px solid #3a3a3a;
+    }
+    #leaderboard-table thead th {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #bbb;
+      letter-spacing: 0.015em;
+      white-space: nowrap;
+    }
+    #leaderboard-table thead th:nth-child(1) {
+      width: 40px; /* Rank */
+    }
+    #leaderboard-table thead th:nth-child(2) {
+      width: 220px; /* Name */
+    }
+    #leaderboard-table thead th:nth-child(n+3) {
+      text-align: center;
+      width: 80px;
+    }
+
+    /* Body rows */
+    #leaderboard-table tbody tr {
+      border-bottom: 1px solid #2a2a2a;
+      transition: background-color 0.15s ease-in-out;
+      cursor: default;
+    }
+    #leaderboard-table tbody tr:hover {
+      background-color: #2e2e2e;
+    }
+
+    #leaderboard-table tbody td {
+      padding: 0.7rem 1rem;
+      vertical-align: middle;
+      color: #ddd;
+    }
+    #leaderboard-table tbody td:nth-child(1) {
+      text-align: center;
+      font-weight: 700;
+      color: #ffa726;
+      user-select: text;
+    }
+    #leaderboard-table tbody td:nth-child(2) {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      font-weight: 600;
+      color: #eee;
+    }
+
+    /* Player icon circle */
+    .player-icon {
+      background-color: #444;
+      color: #bbb;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    /* Numeric columns center */
+    #leaderboard-table tbody td:nth-child(n+3) {
+      text-align: center;
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* KDA column: style as decimal */
+    .kda-value {
+      font-weight: 700;
+      color: #ffa726;
+    }
+
+    /* Loading & error messages */
+    #loading-message,
+    #error-message {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 1.1rem;
+      color: #ccc;
+      background: #222;
+      border-radius: 6px;
+      margin-top: 1.5rem;
+    }
+    </style>
+<style>
+  
+  
+  .announcement-bar {
+    background-color: #191919;
+    max-width: 920px;
+    width: 90%;
+    margin-bottom: 2.5rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #eee;
+    font-size: 0.85rem;
+    padding: 10px 15px;
+    user-select: none;
+    box-sizing: border-box;
+  }
+  .announcement-bar img {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+  }
+  .live-dot {
+    background-color: #e50914;
+    border-radius: 10px;
+    padding: 2px 8px;
+    color: white;
+    font-weight: 700;
+    font-size: 0.75rem;
+    user-select: none;
+  }
+  .date-text {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .date-text svg {
+    fill: #eee;
+    width: 14px;
+    height: 14px;
+  }
+ .main-video-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1900px;           /* Increased max width */
+  height: 520px;               /* Increased height */
+  display: flex;
+  justify-content: center;
+  align-items: center;         /* Center vertically */
+  gap: 30px;                   /* More gap between cards */
+  margin: 0 auto;              /* Center horizontally */
+  overflow: visible;
+  user-select: none;
+  background-color: #000000;
+}
+
+.main-video-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;  /* Space between cards */
+  padding: 20px 0;
+  overflow: visible;
+}
+
+.video-card {
+  position: relative;
+  flex: 0 0 400px;             /* Width of non-selected cards */
+  height: 500px;               /* Height of cards */
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  margin: 0 -50px;  /* Overlap cards slightly */
+  transform: scale(0.9);
+  opacity: 0.8;
+}
+
+.video-card.selected {
+  flex: 0 0 700px;             /* Width of selected card */
+  height: 550px;               /* Slightly taller when selected */
+  z-index: 20;
+  margin: 0;
+  transform: scale(1);
+  opacity: 1;
+  border: 1px solid #333;
+  border-radius: 24px;
+}
+
+/* Video controls */
+.video-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-card:hover .video-controls {
+  opacity: 1;
+}
+
+.control-btn {
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+.video-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: black;
+  border-radius: 24px;
+}
+  .video-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0) 100%);
+    color: #eee;
+    padding: 12px 14px 14px;
+    font-size: 0.85rem;
+    box-sizing: border-box;
+    height: 106px;
+    border-radius: 0 0 15px 15px;
+    font-weight: 400;
+    user-select: none;
+  }
+  .live-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .live-dot-small {
+    background-color: #e50914;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+  }
+  .viewers-count {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    color: #eee;
+    font-size: 0.9rem;
+  }
+  .viewers-count svg {
+    width: 14px;
+    height: 14px;
+    fill: #eee;
+  }
+  .team-list {
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .team-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+  }
+  .team-icon {
+    height: 18px;
+    width: 18px;
+    aspect-ratio: 1/1;
+    background-color: #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .event-info {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    color: #fdbf49;
+  }
+  .event-info svg {
+    width: 16px;
+    height: 16px;
+  }
+  .controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  .control-button {
+    background-color: rgba(0,0,0,0.6);
+    border: none;
+    padding: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .control-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  /* Arrows for navigation */
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ccc;
+    font-size: 35px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 30;
+    transition: color 0.3s;
+  }
+  .nav-arrow:hover {
+    color: #ffcc00;
+  }
+  .nav-left {
+    left: 10px;
+  }
+  .nav-right {
+    right: 10px;
+  }
+
+  /* Fullscreen styles */
+  #fullScreenOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0,0,0,0.98);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+#fullScreenOverlay video {
+  max-width: 98vw !important;
+  max-height: 98vh !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 18px;
+  background: #000;
+  box-shadow: 0 0 40px #000;
+}
+#fullScreenCloseBtn {
+  position: fixed;
+  top: 24px;
+  right: 36px;
+  font-size: 44px;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(0,0,0,0.7);
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  line-height: 54px;
+  text-align: center;
+  z-index: 10000;
+  user-select: none;
+  border: 2px solid #ffa700;
+  transition: background 0.2s;
+}
+#fullScreenCloseBtn:hover {
+  background: #ffa700;
+  color: #000;
+}
+</style>
 </head>
 
 <body id="body" class="vs-page">
@@ -3307,7 +3746,7 @@ margin-left: 70px;
 		  <div class="slider-bottom-images">
     <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/design_1.png?v=1751956379" alt="Image 1" class="slider-bottom-image">
     <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/design_2.png?v=1751956377" alt="Image 2" class="slider-bottom-image">
-    <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/design_3.png?v=1751956375" alt="Image 3" class="slider-bottom-image">
+    <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/444545566_f25f406f-a570-434c-b6a1-470a4132b386.png?v=1755780995" alt="Image 3" class="slider-bottom-image">
   </div>
           </div>
           <div class="slick-slide">
@@ -3358,7 +3797,7 @@ margin-left: 70px;
 		  <div class="slider-bottom-images">
     <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/design_1.png?v=1751956379" alt="Image 1" class="slider-bottom-image">
     <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/design_2.png?v=1751956377" alt="Image 2" class="slider-bottom-image">
-    <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/design_3.png?v=1751956375" alt="Image 3" class="slider-bottom-image">
+    <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/444545566_f25f406f-a570-434c-b6a1-470a4132b386.png?v=1755780995" alt="Image 3" class="slider-bottom-image">
   </div>
           </div>
           <div class="slick-slide">
@@ -3409,7 +3848,7 @@ margin-left: 70px;
             <div class="slider-bottom-images">
     <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/design_1.png?v=1751956379" alt="Image 1" class="slider-bottom-image">
     <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/design_2.png?v=1751956377" alt="Image 2" class="slider-bottom-image">
-    <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/design_3.png?v=1751956375" alt="Image 3" class="slider-bottom-image">
+    <img src="https://cdn.shopify.com/s/files/1/0636/5226/6115/files/444545566_f25f406f-a570-434c-b6a1-470a4132b386.png?v=1755780995" alt="Image 3" class="slider-bottom-image">
   </div>
           </div>
          
@@ -3711,7 +4150,36 @@ margin-left: 70px;
             
         </div>
       </section>
-      <!-- Game Open Registration End -->
+
+
+ <section>
+
+  <div style="text-align:center; padding:40px; background:#0d0d0d; color:#ffffff; font-family:Unbounded, sans-serif;">
+    <h1 style="font-size:36px; font-weight:800; margin-bottom:15px;  -webkit-background-clip:text; ">
+      Player POVs. Real CS2 Matches. Big Moments.
+    </h1>
+    <p style="font-size:15px; line-height:1.6; max-width:800px; margin:0 auto; color:#cccccc;">
+      Colab Esports Watch gives you the <span style="color:#FFA700; font-weight:600;">front row seat</span> — with exclusive 
+      player POVs, instant replays, and highlights from the <span style="color:#DF2A00; font-weight:600;">best in CS2</span>.  
+      Relive every clutch, every frag, every big moment like never before.
+    </p>
+  </div>
+  
+
+ <div class="main-video-carousel" role="region" aria-label="Featured esports video feed carousel">
+    <button class="nav-arrow nav-left" aria-label="Previous Video" id="btnPrev">❮</button>
+    <button class="nav-arrow nav-right" aria-label="Next Video" id="btnNext">❯</button>
+  </div>
+
+  <!-- Fullscreen overlay for video -->
+  <div id="fullScreenOverlay" aria-modal="true" role="dialog" aria-label="Fullscreen Video Player" tabindex="-1">
+    <button id="fullScreenCloseBtn" aria-label="Close Fullscreen">×</button>
+  </div>
+
+</section>
+
+
+
 
 
       <!-- Twin Section data-bg-src="assets/img/bg/twin-section-bg.png"-->
@@ -3815,7 +4283,35 @@ margin-left: 70px;
 </div>
 
       </section>
+
       <!-- Twin Section End -->
+
+            <!-- Game Open Registration End -->
+<section id="leaderboard-section" aria-label="Leaderboard container" style="background-color: #000000;">
+    <header id="leaderboard-header">
+      <h1 id="leaderboard-title" tabindex="0" aria-level="1">Leaderboard</h1>
+      <p id="leaderboard-update" aria-live="polite" aria-atomic="true">Latest update about 1 hour ago, 03:32 PM</p>
+    </header>
+    <div id="leaderboard-table-wrapper" role="region" aria-label="Leaderboard table">
+      <table id="leaderboard-table" role="grid" aria-describedby="leaderboard-update">
+        <thead>
+          <tr>
+            <th scope="col" id="col-rank" aria-sort="none" tabindex="0">Rank</th>
+            <th scope="col" id="col-player" aria-sort="none" tabindex="0">Player</th>
+            <th scope="col" id="col-kill" aria-sort="none" tabindex="0">Kill</th>
+            <th scope="col" id="col-death" aria-sort="none" tabindex="0">Death</th>
+            <th scope="col" id="col-assist" aria-sort="none" tabindex="0">Assist</th>
+            <th scope="col" id="col-kda" aria-sort="none" tabindex="0">KDA</th>
+          </tr>
+        </thead>
+        <tbody aria-live="polite" aria-relevant="additions">
+          <!-- Data rows inserted here by JS -->
+        </tbody>
+      </table>
+    </div>
+    <div id="loading-message" aria-live="assertive" style="display:none;">Loading leaderboard data...</div>
+    <div id="error-message" aria-live="assertive" style="display:none;color:#e55353;">Failed to load leaderboard data.</div>
+  </section>
       <!-- Video Area Start -->
   <section class="video video--layout3 z-index-common" style="background-color: #000000;">
   <div class="video__bg z-index-common">
@@ -4877,6 +5373,376 @@ function addScrollIndicators() {
 document.addEventListener('DOMContentLoaded', addScrollIndicators);
 </script>
 
+
+
+
+ <script>
+    // Example usage:
+    // Replace the apiURL below with your real API URL that returns JSON array of players with fields:
+    // rank (number), player (string), kill (number), death (number), assist (number)
+    // KDA will be computed client side as (kill + assist) / max(death,1)
+    //
+    // API should return data like:
+    // [
+    //   {rank:1, player:"pangua77", kill:100, death:50, assist:20},
+    //   {...}
+    // ]
+
+    const apiURL = "YOUR_API_URL_HERE";
+
+    const tableBody = document.querySelector("#leaderboard-table tbody");
+    const loadingMsg = document.getElementById("loading-message");
+    const errorMsg = document.getElementById("error-message");
+    const updateText = document.getElementById("leaderboard-update");
+
+    // Helper to create player icon - using initials or user icon unicode symbol
+    function createPlayerIcon(name) {
+      const initials = name.trim().split(/\s+/).map(w => w[0].toUpperCase()).slice(0,2).join('');
+      const span = document.createElement("span");
+      span.className = "player-icon";
+      span.textContent = initials || "P";
+      span.title = name;
+      return span;
+    }
+
+    // Format number to 2 decimal places for KDA
+    function formatKDA(kill, death, assist) {
+      const kdaVal = (kill + assist) / (death === 0 ? 1 : death);
+      return kdaVal.toFixed(2);
+    }
+
+    // Build table rows from data and append to tbody
+    function buildTableRows(data) {
+      tableBody.innerHTML = ""; // reset rows
+      if (!Array.isArray(data) || data.length === 0) {
+        const trEmpty = document.createElement("tr");
+        const tdEmpty = document.createElement("td");
+        tdEmpty.colSpan = 6;
+        tdEmpty.style.textAlign = "center";
+        tdEmpty.textContent = "No leaderboard data available.";
+        trEmpty.appendChild(tdEmpty);
+        tableBody.appendChild(trEmpty);
+        return;
+      }
+
+      data.forEach(player => {
+        const tr = document.createElement("tr");
+        tr.setAttribute("role", "row");
+
+        // Rank
+        const tdRank = document.createElement("td");
+        tdRank.setAttribute("role", "gridcell");
+        tdRank.textContent = player.rank ?? "-";
+        tr.appendChild(tdRank);
+
+        // Player Name + Icon
+        const tdPlayer = document.createElement("td");
+        tdPlayer.setAttribute("role", "gridcell");
+        tdPlayer.title = player.player ?? "";
+        const icon = createPlayerIcon(player.player ?? "Unknown");
+        tdPlayer.appendChild(icon);
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = player.player ?? "Unknown";
+        tdPlayer.appendChild(nameSpan);
+        tr.appendChild(tdPlayer);
+
+        // Kill
+        const tdKill = document.createElement("td");
+        tdKill.setAttribute("role", "gridcell");
+        tdKill.textContent = player.kill ?? 0;
+        tr.appendChild(tdKill);
+
+        // Death
+        const tdDeath = document.createElement("td");
+        tdDeath.setAttribute("role", "gridcell");
+        tdDeath.textContent = player.death ?? 0;
+        tr.appendChild(tdDeath);
+
+        // Assist
+        const tdAssist = document.createElement("td");
+        tdAssist.setAttribute("role", "gridcell");
+        tdAssist.textContent = player.assist ?? 0;
+        tr.appendChild(tdAssist);
+
+        // KDA (computed)
+        const tdKDA = document.createElement("td");
+        tdKDA.setAttribute("role", "gridcell");
+        tdKDA.className = "kda-value";
+        const k = player.kill ?? 0;
+        const d = player.death ?? 0;
+        const a = player.assist ?? 0;
+        tdKDA.textContent = formatKDA(k, d, a);
+        tr.appendChild(tdKDA);
+
+        tableBody.appendChild(tr);
+      });
+    }
+
+    async function loadLeaderboard() {
+      loadingMsg.style.display = "";
+      errorMsg.style.display = "none";
+      tableBody.innerHTML = "";
+      try {
+        const response = await fetch(apiURL, { cache: "no-store" });
+        if (!response.ok) throw new Error("Network response not ok");
+        const data = await response.json();
+
+        // Update last updated time text (using current time)
+        const now = new Date();
+        const hoursAgoText = "about 1 hour ago"; // You can customize based on real update info from API if available
+        const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        updateText.textContent = `Latest update ${hoursAgoText}, ${formattedTime}`;
+
+        buildTableRows(data);
+      } catch (e) {
+        errorMsg.style.display = "";
+        errorMsg.textContent = "Failed to load leaderboard data.";
+      } finally {
+        loadingMsg.style.display = "none";
+      }
+    }
+
+    // Initialize load on page load
+    window.addEventListener("DOMContentLoaded", () => {
+      if (!apiURL || apiURL === "YOUR_API_URL_HERE") {
+        errorMsg.style.display = "";
+        errorMsg.textContent = "Error: Please configure your API URL in the script.";
+        return;
+      }
+      loadLeaderboard();
+    });
+  </script>
+
+
+
+<script>
+  (() => {
+    // Sample videos data for ColabEsports
+    const videosData = [
+      {
+        src: "https://cdn.shopify.com/videos/c/o/v/0213320116a6463d9c4d8c4a9f90f008.mp4",
+        title: "ColabEsports Global Showdown 2024 - Valorant Highlights",
+        teams: [
+          {name: "Colab Legends", logo: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/869e6888-a061-4872-bd8b-2385731c09e9.png"},
+          {name: "Team Striker", logo: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/556c7563-5698-4b46-bb53-6af8778be9ca.png"}
+        ],
+        viewers: 5210,
+        live: true,
+        event: "Global Showdown 2024",
+        game: "Valorant"
+      },
+      {
+        src: "https://cdn.shopify.com/videos/c/o/v/e9794aae05af4cf0abea3ebbe35cc4bb.mp4",
+        title: "ColabEsports Masters - CS:GO Best Plays Round 3",
+        teams: [
+          {name: "Rocket Tigers", logo: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b0a4f930-06ac-4152-b833-fff755a8933f.png"},
+          {name: "Urban Wolves", logo: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3ac74ec5-b1a9-4745-ac82-52e754759247.png"}
+        ],
+        viewers: 3368,
+        live: false,
+        event: "ColabEsports Masters",
+        game: "CS:GO"
+      },
+      {
+        src: "https://cdn.shopify.com/videos/c/o/v/e579313dbe704ebb9d0d306ffcb14aa1.mp4",
+        title: "ColabEsports Invitational 2024 - DOTA2 Tactical Highlights",
+        teams: [
+          {name: "Celestial Spirits", logo: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/641ee20d-1ef6-43d1-bf9e-08564de52d5f.png"},
+          {name: "Midnight Owls", logo: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/496a3f83-8dc4-4151-be50-1f38e33660b7.png"}
+        ],
+        viewers: 4472,
+        live: true,
+        event: "Invitational 2024",
+        game: "DOTA2"
+      }
+    ];
+
+    const container = document.querySelector('.main-video-carousel');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const fullScreenOverlay = document.getElementById('fullScreenOverlay');
+    const fullScreenCloseBtn = document.getElementById('fullScreenCloseBtn');
+
+    let selectedIndex = 0;
+    let cards = [];
+
+    function createVideoCard(videoData, index) {
+      const card = document.createElement('div');
+      card.classList.add('video-card');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', `Play video`);
+
+      const videoEl = document.createElement('video');
+      videoEl.src = videoData.src;
+      videoEl.muted = true;  // Start muted by default
+      videoEl.loop = true;
+      videoEl.autoplay = false;
+      videoEl.playsInline = true;
+      videoEl.preload = 'metadata';
+      videoEl.style.width = '100%';
+      videoEl.style.height = '100%';
+      videoEl.style.objectFit = 'cover';
+
+      // Controls container
+      const controls = document.createElement('div');
+      controls.className = 'video-controls';
+      
+      // Mute/Unmute button
+      const muteBtn = document.createElement('button');
+      muteBtn.className = 'control-btn';
+      muteBtn.innerHTML = '🔇';  // Start with muted icon
+      let isMuted = true;  // Track mute state
+      
+      muteBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isMuted = !isMuted;
+        // Mute/unmute all videos
+        document.querySelectorAll('.video-card video').forEach(video => {
+          video.muted = isMuted;
+        });
+        // Update all mute buttons
+        document.querySelectorAll('.control-btn').forEach(btn => {
+          if (btn.textContent === '🔊' || btn.textContent === '🔇') {
+            btn.textContent = isMuted ? '🔇' : '🔊';
+          }
+        });
+      });
+      
+      // Fullscreen button
+      const fullscreenBtn = document.createElement('button');
+      fullscreenBtn.className = 'control-btn';
+      fullscreenBtn.innerHTML = '⛶';
+      fullscreenBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (videoEl.requestFullscreen) {
+          videoEl.requestFullscreen();
+        } else if (videoEl.webkitRequestFullscreen) {
+          videoEl.webkitRequestFullscreen();
+        } else if (videoEl.msRequestFullscreen) {
+          videoEl.msRequestFullscreen();
+        }
+      });
+      
+      controls.appendChild(muteBtn);
+      controls.appendChild(fullscreenBtn);
+      
+      card.appendChild(videoEl);
+      card.appendChild(controls);
+
+      // Clicking the card toggles play/pause
+      card.addEventListener('click', () => {
+        if (videoEl.paused) {
+          videoEl.play();
+        } else {
+          videoEl.pause();
+        }
+      });
+      
+      // Keyboard accessibility
+      card.addEventListener('keydown', (evt) => {
+        if(evt.key === "Enter" || evt.key === " ") {
+          evt.preventDefault();
+          selectVideo(index);
+        }
+      });
+
+      return card;
+    }
+
+    // Fullscreen open helper
+    function openFullscreen(videoElem) {
+      fullScreenOverlay.innerHTML = '';
+      fullScreenOverlay.appendChild(fullScreenCloseBtn);
+      const cloneVideo = videoElem.cloneNode(true);
+      cloneVideo.muted = videoElem.muted;
+      cloneVideo.controls = true;
+      cloneVideo.autoplay = true;
+      cloneVideo.style.maxHeight = '90vh';
+      cloneVideo.style.maxWidth = '90vw';
+      fullScreenOverlay.appendChild(cloneVideo);
+      fullScreenOverlay.classList.add('active');
+      fullScreenCloseBtn.focus();
+    }
+
+    // Close fullscreen
+    fullScreenCloseBtn.addEventListener('click', () => {
+      fullScreenOverlay.classList.remove('active');
+      fullScreenOverlay.innerHTML = '';
+      fullScreenOverlay.appendChild(fullScreenCloseBtn);
+    });
+
+    fullScreenOverlay.addEventListener('click', (e) => {
+      if(e.target === fullScreenOverlay) {
+        fullScreenCloseBtn.click();
+      }
+    });
+
+    // Animate carousel cycling - loop forward
+    let autoCycleInterval;
+    function startAutoCycle() {
+      autoCycleInterval = setInterval(() => {
+        let next = (selectedIndex + 1) % cards.length;
+        selectVideo(next);
+      }, 7000);
+    }
+    function stopAutoCycle() {
+      clearInterval(autoCycleInterval);
+    }
+
+    // Select a video by index and highlight in center
+    function selectVideo(index) {
+      if(index < 0 || index >= cards.length) return;
+      selectedIndex = index;
+      cards.forEach((card, i) => {
+        card.classList.toggle('selected', i === index);
+      });
+      // Rearrange order to put selected in center by flex order
+      cards.forEach((card, i) => {
+        let pos = i - index;
+        if(pos < -1) pos += cards.length;
+        else if(pos > 1) pos -= cards.length;
+        card.style.order = pos + 1; // so center = 1, left=0, right=2
+      });
+      // Play only selected video and pause others
+      cards.forEach((card, i) => {
+        const vid = card.querySelector('video');
+        if(i === index) {
+          vid.play();
+        } else {
+          vid.pause();
+          vid.currentTime = 0;
+        }
+      });
+      stopAutoCycle();
+      startAutoCycle();
+    }
+
+    // Initialize
+    function init() {
+      videosData.forEach((video, i) => {
+        const card = createVideoCard(video, i);
+        container.appendChild(card);
+        cards.push(card);
+      });
+      selectVideo(0);
+    }
+
+    btnPrev.addEventListener('click', () => {
+      let prevIndex = (selectedIndex - 1 + cards.length) % cards.length;
+      selectVideo(prevIndex);
+    });
+
+    btnNext.addEventListener('click', () => {
+      let nextIndex = (selectedIndex + 1) % cards.length;
+      selectVideo(nextIndex);
+    });
+
+    init();
+    startAutoCycle();
+
+  })();
+</script>
 </body>
 
 </html>
